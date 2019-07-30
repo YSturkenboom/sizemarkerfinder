@@ -12,30 +12,34 @@ import csv
 import glob
 from keras.callbacks import CSVLogger, ModelCheckpoint
 
+path = '/content/drive/My Drive/Colab Notebooks/Data'
+
 csv_logger = CSVLogger('log.csv', append=True, separator=';')
 
 # config = tf.ConfigProto()
 # config.gpu_options.allow_growth = True
 # tf.keras.backend.set_session(tf.Session(config=config))
 
-n_samples = 100
+n_samples = 1000
 n_epochs = 100
 
 # read cmd line args
-if (len(sys.argv) > 1):
-	n_samples = int(sys.argv[1])
-	if (n_samples > 1000):
-		print("sample size exceeds available samples")
-		sys.exit()
-if (len(sys.argv) > 2):
-	n_epochs  = int(sys.argv[2])
+# if (len(sys.argv) > 1):
+# 	n_samples = int(sys.argv[1])
+# 	if (n_samples > 1000):
+# 		print("sample size exceeds available samples")
+# 		sys.exit()
+# if (len(sys.argv) > 2):
+# 	n_epochs  = int(sys.argv[2])
 
 print('n_samples', n_samples, 'n_epochs', n_epochs)
 
 data = np.array([])
 
-files = [f for f in glob.glob("./data/*.txt")]
+files = [f for f in glob.glob(path + '/*.txt')]
+print(files)
 for f in files:
+    
     with open(f, 'r') as file:
         if (data.size == 0):
             data = np.array(list(csv.reader(file))[1:])
@@ -90,7 +94,10 @@ model.compile(optimizer='adam',
 
 checkpointer = ModelCheckpoint(filepath='/tmp/weights.hdf5', verbose=1, save_best_only=True)
 
-model.fit(training_set, training_labels, epochs=n_epochs, callbacks=[csv_logger, checkpointer])
-test_loss, test_acc = model.evaluate(test_set, test_labels)
+# model.fit(training_set, training_labels, epochs=n_epochs, callbacks=[csv_logger, checkpointer])
+model.fit(training_set, training_labels, epochs=n_epochs)
 
-print('Test accuracy:', test_acc, 'Test loss', test_loss)
+_, test_loss = model.evaluate(test_set, test_labels)
+
+print('Test loss', test_loss)
+model.save('modeldraft1.h5')
