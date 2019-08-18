@@ -85,11 +85,13 @@ def readData(data_path, amount):
 # training_set_size = int(round(n_samples * 0.8))
 
 (data, labels) = readData('/Data/*.txt', n_samples)
-print('data', data[0])
+print('data', data[0], labels[0])
+print('size', data.size, labels.size)
 (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
 (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
 training_set = np.concatenate((data, dataNoDrop, dataNoHarm))
 training_labels = np.concatenate((labels, labelsNoDrop, labelsNoharm))
+print('size', training_set.size, training_labels.size)
 
 # select columns of interest: RFU and time
 data = np.transpose(data[:,1:3], (0, 2, 1))
