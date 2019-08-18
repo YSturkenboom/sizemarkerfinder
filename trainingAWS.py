@@ -92,7 +92,7 @@ def readData(data_path, amount):
 training_set = np.append(data, [dataNoDrop, dataNoHarm])
 training_labels = np.append(labels, [labelsNoDrop, labelsNoharm])
 
-print('size', training_set.size, training_labels.size)
+print('size', data.size, labels.size)
 
 (test_set, test_labels) = readData('/Test/*/*.txt', 10)
 
