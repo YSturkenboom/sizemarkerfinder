@@ -46,7 +46,7 @@ def readData(data_path, amount):
 
     files = [f for f in glob.glob(path + data_path)]
     random.shuffle(files)
-    print(files)
+    print(data_path)
     for f in tqdm(files[:amount]):
         with open(f, 'r') as file:
             if (data.size == 0):
