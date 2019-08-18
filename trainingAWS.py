@@ -79,8 +79,6 @@ def readData(data_path, amount):
 
             labels = np.vstack((labels, sizemarker_pos))
     
-    # select columns of interest: RFU and time
-    data = np.transpose(data[:,1:3], (0, 2, 1))
     return (data, labels)
 
 # 80/20 train/test split
@@ -90,8 +88,11 @@ def readData(data_path, amount):
 print('data', data[0])
 (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
 (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
-training_set = np.append(data, [dataNoDrop, dataNoHarm])
-training_labels = np.append(labels, [labelsNoDrop, labelsNoharm])
+training_set = np.concatenate((data, dataNoDrop, dataNoHarm))
+training_labels = np.concatenate((labels, labelsNoDrop, labelsNoharm))
+
+# select columns of interest: RFU and time
+data = np.transpose(data[:,1:3], (0, 2, 1))
 
 print('size', data.size, labels.size)
 
