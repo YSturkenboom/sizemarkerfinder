@@ -16,7 +16,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 
 path = os.getcwd()
 print(path)
-n_samples = 100
+n_samples = 10
 n_epochs = 1000
 model_version = 'test'
 
@@ -89,8 +89,8 @@ def readData(data_path, amount):
 (data, labels) = readData('/Data/*.txt', n_samples)
 (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
 (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
-training_set = np.concatenate(data, dataNoDrop, dataNoHarm)
-training_labels = np.concatenate(labels, labelsNoDrop, labelsNoharm)
+training_set = np.append(data, [dataNoDrop, dataNoHarm])
+training_labels = np.append(labels, [labelsNoDrop, labelsNoharm])
 
 print(training_set.size, training_labels.size)
 
