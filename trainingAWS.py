@@ -87,6 +87,7 @@ def readData(data_path, amount):
 # training_set_size = int(round(n_samples * 0.8))
 
 (data, labels) = readData('/Data/*.txt', n_samples)
+print('size', data.size, labels.size)
 (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
 (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
 training_set = np.append(data, [dataNoDrop, dataNoHarm])
