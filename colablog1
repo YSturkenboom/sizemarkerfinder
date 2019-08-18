@@ -1,0 +1,205 @@
+n_samples 100 n_epochs 100
+['/content/drive/My Drive/Colab Notebooks/TinyData/32.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/37.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/36.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/39.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/38.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/41.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/46.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/42.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/44.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/45.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/47.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/40.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/43.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/48.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/49.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/50.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/55.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/56.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/51.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/59.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/53.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/57.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/58.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/54.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/52.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/60.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/63.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/68.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/69.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/64.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/66.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/67.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/61.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/65.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/62.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/70.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/76.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/71.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/79.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/75.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/74.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/72.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/73.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/77.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/78.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/81.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/88.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/82.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/84.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/89.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/80.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/85.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/87.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/86.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/83.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/90.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/92.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/91.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/98.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/99.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/96.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/94.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/97.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/95.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/93.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/11.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/15.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/18.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/19.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/14.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/17.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/16.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/13.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/10.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/12.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/20.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/21.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/26.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/25.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/28.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/22.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/27.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/23.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/24.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/29.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/31.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/35.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/33.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/34.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/30.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/0.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/2.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/8.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/1.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/6.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/3.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/7.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/5.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/9.txt', '/content/drive/My Drive/Colab Notebooks/TinyData/4.txt']
+Sizemarker positions [4747, 5047, 5375, 5746, 6098, 7290, 8158, 9068, 10023, 10983, 11964, 12925, 13860, 14764, 15609, 16395, 17128, 17774, 18376, 19353, 19774, 20124, 20429, 20686, 20918, 21109, 21255, 21516, 21703, -1, -1] Sizemarkers in experiment 31
+Epoch 1/100
+80/80 [==============================] - 3s 35ms/sample - loss: 2884411804403.1997 - mean_absolute_error: 1130716.0000
+Epoch 2/100
+80/80 [==============================] - 3s 32ms/sample - loss: 1271794329190.4001 - mean_absolute_error: 1087468.2500
+Epoch 3/100
+80/80 [==============================] - 3s 33ms/sample - loss: 1108518266470.4001 - mean_absolute_error: 1004694.8750
+Epoch 4/100
+80/80 [==============================] - 3s 33ms/sample - loss: 196564829798.4000 - mean_absolute_error: 384732.5312
+Epoch 5/100
+80/80 [==============================] - 3s 32ms/sample - loss: 573848308940.7999 - mean_absolute_error: 750507.6875
+Epoch 6/100
+80/80 [==============================] - 3s 33ms/sample - loss: 55789879296.0000 - mean_absolute_error: 213045.0938
+Epoch 7/100
+80/80 [==============================] - 3s 32ms/sample - loss: 299230707712.0000 - mean_absolute_error: 545743.0000
+Epoch 8/100
+80/80 [==============================] - 2s 31ms/sample - loss: 44406000742.4000 - mean_absolute_error: 182344.0938
+Epoch 9/100
+80/80 [==============================] - 3s 32ms/sample - loss: 70193170022.4000 - mean_absolute_error: 260005.6719
+Epoch 10/100
+80/80 [==============================] - 3s 32ms/sample - loss: 69219700736.0000 - mean_absolute_error: 258221.7969
+Epoch 11/100
+80/80 [==============================] - 3s 33ms/sample - loss: 4485142784.0000 - mean_absolute_error: 57690.2070
+Epoch 12/100
+80/80 [==============================] - 2s 31ms/sample - loss: 36036677632.0000 - mean_absolute_error: 188557.5000
+Epoch 13/100
+80/80 [==============================] - 3s 33ms/sample - loss: 28778661068.8000 - mean_absolute_error: 166699.1406
+Epoch 14/100
+80/80 [==============================] - 3s 32ms/sample - loss: 1783224642.4000 - mean_absolute_error: 34010.4805
+Epoch 15/100
+80/80 [==============================] - 3s 32ms/sample - loss: 10254513766.4000 - mean_absolute_error: 100033.3594
+Epoch 16/100
+80/80 [==============================] - 3s 32ms/sample - loss: 12085587558.4000 - mean_absolute_error: 109292.4766
+Epoch 17/100
+80/80 [==============================] - 3s 33ms/sample - loss: 1934348156.4000 - mean_absolute_error: 37977.3047
+Epoch 18/100
+80/80 [==============================] - 3s 32ms/sample - loss: 1872328089.6000 - mean_absolute_error: 40654.1367
+Epoch 19/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4751528960.0000 - mean_absolute_error: 68841.2734
+Epoch 20/100
+80/80 [==============================] - 3s 33ms/sample - loss: 1769564211.2000 - mean_absolute_error: 40287.9766
+Epoch 21/100
+80/80 [==============================] - 3s 32ms/sample - loss: 190641988.8000 - mean_absolute_error: 11324.7217
+Epoch 22/100
+80/80 [==============================] - 3s 32ms/sample - loss: 1440627507.2000 - mean_absolute_error: 37777.6016
+Epoch 23/100
+80/80 [==============================] - 3s 32ms/sample - loss: 1174025651.2000 - mean_absolute_error: 33808.6367
+Epoch 24/100
+80/80 [==============================] - 3s 33ms/sample - loss: 125052148.8000 - mean_absolute_error: 9575.6445
+Epoch 25/100
+80/80 [==============================] - 2s 31ms/sample - loss: 292765011.2000 - mean_absolute_error: 16536.6621
+Epoch 26/100
+80/80 [==============================] - 3s 32ms/sample - loss: 529740480.0000 - mean_absolute_error: 22879.1465
+Epoch 27/100
+80/80 [==============================] - 2s 31ms/sample - loss: 150877268.8000 - mean_absolute_error: 11391.2295
+Epoch 28/100
+80/80 [==============================] - 3s 33ms/sample - loss: 43102878.6000 - mean_absolute_error: 5343.3047
+Epoch 29/100
+80/80 [==============================] - 3s 32ms/sample - loss: 190418809.6000 - mean_absolute_error: 13660.8359
+Epoch 30/100
+80/80 [==============================] - 3s 32ms/sample - loss: 108058456.0000 - mean_absolute_error: 9997.9785
+Epoch 31/100
+80/80 [==============================] - 3s 32ms/sample - loss: 10675496.2000 - mean_absolute_error: 2501.9180
+Epoch 32/100
+80/80 [==============================] - 3s 31ms/sample - loss: 60428524.8000 - mean_absolute_error: 7547.6470
+Epoch 33/100
+80/80 [==============================] - 3s 33ms/sample - loss: 56693056.8000 - mean_absolute_error: 7313.5649
+Epoch 34/100
+80/80 [==============================] - 3s 33ms/sample - loss: 9729134.4000 - mean_absolute_error: 2322.9136
+Epoch 35/100
+80/80 [==============================] - 3s 32ms/sample - loss: 20837331.6000 - mean_absolute_error: 4035.7485
+Epoch 36/100
+80/80 [==============================] - 3s 33ms/sample - loss: 27699648.8000 - mean_absolute_error: 4881.2959
+Epoch 37/100
+80/80 [==============================] - 3s 32ms/sample - loss: 8313817.1000 - mean_absolute_error: 2064.8904
+Epoch 38/100
+80/80 [==============================] - 3s 32ms/sample - loss: 8697137.4000 - mean_absolute_error: 2351.6836
+Epoch 39/100
+80/80 [==============================] - 3s 32ms/sample - loss: 13403640.2000 - mean_absolute_error: 3191.2805
+Epoch 40/100
+80/80 [==============================] - 3s 32ms/sample - loss: 6129580.8000 - mean_absolute_error: 1734.0120
+Epoch 41/100
+80/80 [==============================] - 3s 32ms/sample - loss: 5629828.3000 - mean_absolute_error: 1423.0480
+Epoch 42/100
+80/80 [==============================] - 3s 33ms/sample - loss: 7973773.3000 - mean_absolute_error: 2023.7955
+Epoch 43/100
+80/80 [==============================] - 3s 32ms/sample - loss: 5398878.5000 - mean_absolute_error: 1353.0072
+Epoch 44/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4682726.4000 - mean_absolute_error: 1358.0270
+Epoch 45/100
+80/80 [==============================] - 3s 32ms/sample - loss: 5707705.8000 - mean_absolute_error: 1669.5959
+Epoch 46/100
+80/80 [==============================] - 3s 31ms/sample - loss: 4656910.5500 - mean_absolute_error: 1350.3406
+Epoch 47/100
+80/80 [==============================] - 3s 33ms/sample - loss: 4561104.7000 - mean_absolute_error: 1194.1221
+Epoch 48/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4860111.6000 - mean_absolute_error: 1239.0168
+Epoch 49/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4369607.8000 - mean_absolute_error: 1159.0198
+Epoch 50/100
+80/80 [==============================] - 2s 31ms/sample - loss: 4307821.6000 - mean_absolute_error: 1210.0492
+Epoch 51/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4481798.7000 - mean_absolute_error: 1285.2849
+Epoch 52/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4302724.5000 - mean_absolute_error: 1212.1442
+Epoch 53/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4311662.9000 - mean_absolute_error: 1170.0341
+Epoch 54/100
+80/80 [==============================] - 3s 33ms/sample - loss: 4332644.1000 - mean_absolute_error: 1156.1487
+Epoch 55/100
+80/80 [==============================] - 2s 31ms/sample - loss: 4254220.3500 - mean_absolute_error: 1159.5527
+Epoch 56/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4246729.3500 - mean_absolute_error: 1181.7372
+Epoch 57/100
+80/80 [==============================] - 2s 31ms/sample - loss: 4252371.3000 - mean_absolute_error: 1182.7034
+Epoch 58/100
+80/80 [==============================] - 3s 31ms/sample - loss: 4217334.2000 - mean_absolute_error: 1154.8981
+Epoch 59/100
+80/80 [==============================] - 3s 31ms/sample - loss: 4228779.3000 - mean_absolute_error: 1140.2688
+Epoch 60/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4250846.5000 - mean_absolute_error: 1136.6755
+Epoch 61/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4231380.9500 - mean_absolute_error: 1154.7903
+Epoch 62/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4248003.4000 - mean_absolute_error: 1180.7080
+Epoch 63/100
+80/80 [==============================] - 2s 31ms/sample - loss: 4208915.4500 - mean_absolute_error: 1165.3193
+Epoch 64/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4211986.0000 - mean_absolute_error: 1143.6172
+Epoch 65/100
+80/80 [==============================] - 3s 33ms/sample - loss: 4229525.9500 - mean_absolute_error: 1141.8127
+Epoch 66/100
+80/80 [==============================] - 3s 31ms/sample - loss: 4211139.8000 - mean_absolute_error: 1160.3823
+Epoch 67/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4190420.5000 - mean_absolute_error: 1168.3535
+Epoch 68/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4173952.4000 - mean_absolute_error: 1157.2233
+Epoch 69/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4214376.4000 - mean_absolute_error: 1151.6371
+Epoch 70/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4175176.2500 - mean_absolute_error: 1150.9519
+Epoch 71/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4177528.9000 - mean_absolute_error: 1171.3997
+Epoch 72/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4164546.9000 - mean_absolute_error: 1160.2379
+Epoch 73/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4164145.0000 - mean_absolute_error: 1139.5452
+Epoch 74/100
+80/80 [==============================] - 2s 31ms/sample - loss: 4161468.2000 - mean_absolute_error: 1141.6216
+Epoch 75/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4163845.7000 - mean_absolute_error: 1157.7318
+Epoch 76/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4142764.8000 - mean_absolute_error: 1154.3138
+Epoch 77/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4147129.8000 - mean_absolute_error: 1140.8856
+Epoch 78/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4144307.6000 - mean_absolute_error: 1131.4039
+Epoch 79/100
+80/80 [==============================] - 3s 31ms/sample - loss: 4114389.7000 - mean_absolute_error: 1132.4512
+Epoch 80/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4115355.3000 - mean_absolute_error: 1142.6414
+Epoch 81/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4124729.5000 - mean_absolute_error: 1149.8279
+Epoch 82/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4134091.7500 - mean_absolute_error: 1155.7916
+Epoch 83/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4093428.9000 - mean_absolute_error: 1130.8529
+Epoch 84/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4130934.6500 - mean_absolute_error: 1117.6531
+Epoch 85/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4106319.3000 - mean_absolute_error: 1117.8636
+Epoch 86/100
+80/80 [==============================] - 3s 33ms/sample - loss: 4105208.1000 - mean_absolute_error: 1143.0647
+Epoch 87/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4087461.7000 - mean_absolute_error: 1140.9584
+Epoch 88/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4080614.6000 - mean_absolute_error: 1131.7136
+Epoch 89/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4074716.7000 - mean_absolute_error: 1134.1848
+Epoch 90/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4062525.7000 - mean_absolute_error: 1132.5162
+Epoch 91/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4053931.3500 - mean_absolute_error: 1122.4232
+Epoch 92/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4048702.1000 - mean_absolute_error: 1116.7717
+Epoch 93/100
+80/80 [==============================] - 3s 33ms/sample - loss: 4044908.5000 - mean_absolute_error: 1122.7784
+Epoch 94/100
+80/80 [==============================] - 3s 33ms/sample - loss: 4043408.2000 - mean_absolute_error: 1128.0076
+Epoch 95/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4040232.2000 - mean_absolute_error: 1126.1202
+Epoch 96/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4035002.9250 - mean_absolute_error: 1126.2601
+Epoch 97/100
+80/80 [==============================] - 3s 33ms/sample - loss: 4021064.3250 - mean_absolute_error: 1125.9656
+Epoch 98/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4016876.9000 - mean_absolute_error: 1118.4504
+Epoch 99/100
+80/80 [==============================] - 3s 32ms/sample - loss: 4009561.2000 - mean_absolute_error: 1111.0836
+Epoch 100/100
+80/80 [==============================] - 3s 31ms/sample - loss: 4005410.8000 - mean_absolute_error: 1109.3958
+20/20 [==============================] - 1s 33ms/sample - loss: 13767232.0000 - mean_absolute_error: 1766.6003
+Test loss 1766.6003

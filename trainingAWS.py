@@ -16,7 +16,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 
 path = os.getcwd()
 print(path)
-n_samples = 1000
+n_samples = 100
 n_epochs = 1000
 model_version = 'test'
 
@@ -41,53 +41,66 @@ csv_logger = CSVLogger(path + '/tmp/v' + str(model_version) + 'e' + str(n_epochs
 
 print('n_samples', n_samples, 'n_epochs', n_epochs)
 
-data = np.array([])
+def readData(data_path, amount):
+    data = np.array([])
 
-files = [f for f in glob.glob(path + '/Data/*.txt')]
-random.shuffle(files)
-print(files)
-for f in tqdm(files[:n_samples]):
-    with open(f, 'r') as file:
-        if (data.size == 0):
-            data = np.array(list(csv.reader(file))[1:])
+    files = [f for f in glob.glob(path + data_path)]
+    random.shuffle(files)
+    print(files)
+    for f in tqdm(files[:amount]):
+        with open(f, 'r') as file:
+            if (data.size == 0):
+                data = np.array(list(csv.reader(file))[1:])
+            else:
+                data = np.dstack((data, list(csv.reader(file))[1:]))
+
+    data = np.transpose(data)
+    labels = np.array([])
+
+    for experiment in data:
+        if (len(labels) == 0):
+            sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[4] != '-1')
+
+            # experimental: if missing sizemarkers add -1's
+            for i in range(31- len(sizemarker_pos)):
+                sizemarker_pos.append(-1)
+
+    #         print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
+
+            labels = sizemarker_pos
         else:
-            data = np.dstack((data, list(csv.reader(file))[1:]))
+            sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[4] != '-1')
 
-data = np.transpose(data)
-labels = np.array([])
+            # experimental: if missing sizemarkers add -1's
+            for i in range(31- len(sizemarker_pos)):
+                sizemarker_pos.append(-1)
 
-for experiment in data:
-    if (len(labels) == 0):
-        sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[4] != '-1')
+            # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
 
-        # experimental: if missing sizemarkers add -1's
-        for i in range(31- len(sizemarker_pos)):
-            sizemarker_pos.append(-1)
-
-#         print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
-
-        labels = sizemarker_pos
-    else:
-        sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[4] != '-1')
-
-        # experimental: if missing sizemarkers add -1's
-        for i in range(31- len(sizemarker_pos)):
-            sizemarker_pos.append(-1)
-
-        # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
-
-        labels = np.vstack((labels, sizemarker_pos))
-
-# select columns of interest: RFU and time
-data = np.transpose(data[:,1:3], (0, 2, 1))
+            labels = np.vstack((labels, sizemarker_pos))
+    
+    # select columns of interest: RFU and time
+    data = np.transpose(data[:,1:3], (0, 2, 1))
+    return (data, labels)
 
 # 80/20 train/test split
-training_set_size = int(round(n_samples * 0.8))
+# training_set_size = int(round(n_samples * 0.8))
 
-training_set = data[:training_set_size]
-training_labels = labels[:training_set_size]
-test_set = data[training_set_size:]
-test_labels = labels[training_set_size:]
+(data, labels) = readData('/Data/*.txt', n_samples)
+(dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
+(dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
+training_set = np.concatenate(data, dataNoDrop, dataNoHarm)
+training_labels = np.concatenate(labels, labelsNoDrop, labelsNoharm)
+
+print(training_set.size, training_labels.size)
+
+(test_set, test_labels) = readData('/Test/*/*.txt', 300)
+
+print(test_set.size, test_labels.size)
+# training_set = data[:training_set_size]
+# training_labels = labels[:training_set_size]
+# test_set = data[training_set_size:]
+# test_labels = labels[training_set_size:]
 
 model = keras.Sequential([
     keras.layers.Conv1D(100, 250, activation='linear', input_shape=(25000, 2)),
