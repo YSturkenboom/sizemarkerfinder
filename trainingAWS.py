@@ -94,13 +94,16 @@ training_labels = np.concatenate((labels, labelsNoDrop, labelsNoharm))
 print('size', training_set.size, training_labels.size)
 
 # select columns of interest: RFU and time
-data = np.transpose(data[:,1:3], (0, 2, 1))
+training_set = np.transpose(training_set[:,1:3], (0, 2, 1))
 
 print('size', data.size, labels.size)
 
 (test_set, test_labels) = readData('/Test/*/*.txt', 10)
 
 print('size', test_set.size, test_labels.size)
+
+# select columns of interest: RFU and time
+test_set = np.transpose(test_set[:,1:3], (0, 2, 1))
 # training_set = data[:training_set_size]
 # training_labels = labels[:training_set_size]
 # test_set = data[training_set_size:]
