@@ -1,13 +1,14 @@
 import sys
 import os
-import tensorflow as tf
-from tensorflow import keras
-from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
 import glob
 import random
+import time
+import tensorflow as tf
+from tensorflow import keras
+from tqdm import tqdm
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 
 path = os.getcwd()
@@ -15,8 +16,8 @@ path = os.getcwd()
 # VARIABLES AND HYPERPARAMETERS
 experimentName = 'Test3'
 
-n_samples = 100
-n_epochs = 100
+n_samples = 50
+n_epochs = 50
 model_version = 'v1'
 shuffle = True
 normalize = True
