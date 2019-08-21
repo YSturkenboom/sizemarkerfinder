@@ -1,9 +1,5 @@
 import sys
 import os
-
-# Do not use GPU (use CPU)
-# os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
 import tensorflow as tf
 from tensorflow import keras
 from tqdm import tqdm
@@ -15,29 +11,32 @@ import random
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 
 path = os.getcwd()
-print(path)
-n_samples = 10
-n_epochs = 1000
-model_version = 'test'
+
+# VARIABLES AND HYPERPARAMETERS
+experimentName = 'Test3'
+
+n_samples = 100
+n_epochs = 100
+model_version = 'v1'
+shuffle = True
+normalize = True
+generate_log = True
+checkpoints = False
+save_model = True
+hyperparams = [n_samples, n_epochs, shuffle, normalize, model_version]
+hyperparam_names = ['n_samples', 'n_epochs', 'shuffle', 'normalize', 'model_version']
 
 # v1 conv, flatten, 100 dense, 31 dense
 # v2 conv, flatten, 100 dense, 100 dense, 31 dense
+os.mkdir(path + '/experiments/' + experimentName)
 
-csv_logger = CSVLogger(path + '/tmp/v' + str(model_version) + 'e' + str(n_epochs) + 'n' + str(n_samples) + 'log.csv', append=True)
-# checkpointer = ModelCheckpoint(filepath=path+'/tmp/weights.hdf5', verbose=1, save_best_only=True, mode='min', monitor='loss')
+csv_logger = CSVLogger(path + '/experiments/' + experimentName + '/log.csv')
+checkpointer = ModelCheckpoint(filepath=path+'/tmp/weights.hdf5', verbose=1, save_best_only=True, mode='min', monitor='loss')
 
-# config = tf.ConfigProto()
-# config.gpu_options.allow_growth = True
-# tf.keras.backend.set_session(tf.Session(config=config))
-
-# read cmd line args
-# if (len(sys.argv) > 1):
-# 	n_samples = int(sys.argv[1])
-# 	if (n_samples > 1000):
-# 		print("sample size exceeds available samples")
-# 		sys.exit()
-# if (len(sys.argv) > 2):
-# 	n_epochs  = int(sys.argv[2])
+# LOG OUT HYPERPARAMETERS
+with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'w') as f:
+    for item in zip(hyperparam_names, hyperparams):
+        f.write(str(item[0]) + ': ' + str(item[1]) +'\n')
 
 print('n_samples', n_samples, 'n_epochs', n_epochs)
 
@@ -65,7 +64,7 @@ def readData(data_path, amount):
             for i in range(31- len(sizemarker_pos)):
                 sizemarker_pos.append(-1)
 
-    #         print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
+            # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
 
             labels = sizemarker_pos
         else:
@@ -80,9 +79,6 @@ def readData(data_path, amount):
             labels = np.vstack((labels, sizemarker_pos))
     
     return (data, labels)
-
-# 80/20 train/test split
-# training_set_size = int(round(n_samples * 0.8))
 
 (data, labels) = readData('/Data/*.txt', n_samples)
 print('data', data[0], labels[0])
@@ -104,28 +100,34 @@ print('size', test_set.size, test_labels.size)
 
 # select columns of interest: RFU and time
 test_set = np.transpose(test_set[:,1:3], (0, 2, 1))
-# training_set = data[:training_set_size]
-# training_labels = labels[:training_set_size]
-# test_set = data[training_set_size:]
-# test_labels = labels[training_set_size:]
 
 model = keras.Sequential([
-    keras.layers.Conv1D(100, 250, activation='linear', input_shape=(25000, 2)),
+    keras.layers.Conv1D(31, 250, activation='linear', input_shape=(25000, 2)),
     keras.layers.Flatten(),
 #     keras.layers.Dense(100, activation='linear'),
-    keras.layers.Dense(100, activation='linear'),
     keras.layers.Dense(31, activation='linear')
 ])
+adam = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0000001, decay=0.0, amsgrad=False)
+model.compile(optimizer=adam,
+              loss='mean_squared_error')
 
-model.compile(optimizer='adam',
-              loss='mean_squared_error',
-              metrics=['mae'])
+callbacks = []
+if (checkpoints):
+  callbacks.append(checkpointer)
+if (generate_log):
+  callbacks.append(csv_logger)
+  
+startFit = time.time()
+model.fit(training_set, training_labels, validation_split=0.2, shuffle=shuffle, batch_size=32, epochs=n_epochs, callbacks=callbacks)
 
-model.fit(training_set, training_labels, epochs=n_epochs, callbacks=[csv_logger])
-# model.fit(training_set, training_labels, epochs=n_epochs)
+test_loss = model.evaluate(test_set, test_labels)
+with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'a') as f:
+  f.write('model_fit_time: ' + str(time.time() - startFit) + '\n')
+  f.write('test_loss: ' + str(test_loss))
+print('Test loss', test_loss)
 
-_, test_loss = model.evaluate(test_set, test_labels)
 model.save("model_{}_{}.h5".format(n_samples,n_epochs))
 print('Test loss', test_loss)
-# model.save(path + '/tmp/e' + str(n_epochs) + 'n' + str(n_samples) + 'model.h5')
 
+if (save_model):
+  model.save_weights(path + '/tmp/weights.h5')
