@@ -47,7 +47,7 @@ print('n_samples', n_samples, 'n_epochs', n_epochs)
 def readData(data_path, amount):
     files = [f for f in glob.glob(path + data_path)]
     random.shuffle(files)
-    data = np.zeros(amount, 25000, 2)
+    data = np.zeros(amount)
     print(data_path)
     for idx, f in enumerate(files[:amount]):
         with open(f, 'r') as file:
