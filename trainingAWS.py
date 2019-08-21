@@ -55,7 +55,9 @@ def readData(data_path, amount):
             if (data.size == 0):
                 data = np.array(list(csv.reader(file))[1:])
             else:
-                data = tqdm(np.dstack((data, list(csv.reader(file))[1:])))
+                hmm = time.time()
+                data = np.dstack((data, list(csv.reader(file))[1:]))
+                print('dstack time', str(time.time() - hmm))
 
     data = np.transpose(data)
     labels = np.array([])
