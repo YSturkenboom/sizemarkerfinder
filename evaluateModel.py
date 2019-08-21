@@ -63,6 +63,6 @@ def generateProfiles():
   makePredictions(path + '/Test/Data/999.txt', plt, 131, 'Sample from normal test set')
   makePredictions(path + '/Test/DataNoDrop/0.txt', plt, 132, 'Sample from no-drop test set')
   makePredictions(path + '/Test/DataNoHarm/0.txt', plt, 133, 'Sample from no-harmonica test set')
-  plt.savefig(path + 'plot.png')
+  plt.savefig(path + '/plot.png')
 
 generateProfiles()
