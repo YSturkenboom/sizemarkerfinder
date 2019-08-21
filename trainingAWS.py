@@ -49,7 +49,7 @@ def readData(data_path, amount):
     random.shuffle(files)
     data = np.zeros(amount,)
     print(data_path)
-    for idx, f in files[:amount]:
+    for idx, f in enumerate(files[:amount]):
         with open(f, 'r') as file:
             hmm = time.time()
             data[idx] = np.dstack((list(csv.reader(file))[1:], data))
