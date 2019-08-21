@@ -47,16 +47,20 @@ print('n_samples', n_samples, 'n_epochs', n_epochs)
 def readData(data_path, amount):
     files = [f for f in glob.glob(path + data_path)]
     random.shuffle(files)
-    data = np.zeros(amount,)
+    data = np.zeros(amount, 25000, 2)
     print(data_path)
     for idx, f in enumerate(files[:amount]):
         with open(f, 'r') as file:
             hmm = time.time()
+            stuff = list(csv.reader(file))[1:]
+            print('stuff', len(stuff), stuff)
+            stuff = np.array(stuff)
+            print('stuff', stuff.size, stuff)
             data[idx] = np.array(list(csv.reader(file))[1:])
             print('array assignment time pre-alloc size', str(time.time() - hmm))
 
     data = np.transpose(data)
-    labels = np.array([])
+    labels = np.zeros(amount,)
 
     for experiment in data:
         if (len(labels) == 0):
