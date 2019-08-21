@@ -16,7 +16,7 @@ path = os.getcwd()
 # VARIABLES AND HYPERPARAMETERS
 experimentName = 'Test3'
 
-print (tensorflow.__version__)
+print (tf.__version__)
 
 n_samples = 50
 n_epochs = 50
