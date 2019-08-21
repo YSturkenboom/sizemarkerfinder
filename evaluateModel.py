@@ -14,7 +14,16 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 WEIGHTS_PATH = "/tmp/weights.h5"
 
 # LOAD MODEL FROM FILE
-model = Sequential()
+model = keras.Sequential([
+    keras.layers.Conv1D(31, 250, activation='linear', input_shape=(25000, 2)),
+    keras.layers.Flatten(),
+#     keras.layers.Dense(100, activation='linear'),
+    keras.layers.Dense(31, activation='linear')
+])
+adam = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0000001, decay=0.0, amsgrad=False)
+model.compile(optimizer=adam,
+              loss='mean_squared_error')
+              
 model.load_weights(WEIGHTS_PATH)
 
 def generateProfile(data, predictions, plt, n, title):
