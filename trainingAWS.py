@@ -50,7 +50,7 @@ def readData(data_path, amount):
     data = np.zeros((amount, 25000, 3))
     labels = np.zeros((amount,))
     print(data_path)
-    for idx, f in enumerate(files[:amount]):
+    for idx, f in tqdm(enumerate(files[:amount])):
         with open(f, 'r') as file:
             hmm = time.time()
             stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
