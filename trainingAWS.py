@@ -48,17 +48,17 @@ def readData(data_path, amount):
     files = [f for f in glob.glob(path + data_path)]
     random.shuffle(files)
     data = np.zeros((amount, 25000, 5))
+    labels = np.zeros((amount,))
     print(data_path)
     for idx, f in enumerate(files[:amount]):
         with open(f, 'r') as file:
             hmm = time.time()
-            stuff = np.loadtxt(file, delimiter=",", skiprows=1)
+            stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             print('stuff', len(stuff), stuff.size, stuff)
-            data[idx] = np.loadtxt(file, delimiter=",", skiprows=1)
+            data[idx] = stuff
             print('array assignment time pre-alloc size', str(time.time() - hmm))
 
     data = np.transpose(data)
-    labels = np.zeros(amount,)
 
     for experiment in data:
         if (len(labels) == 0):
