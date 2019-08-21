@@ -60,9 +60,9 @@ def makePredictions(prediction_data_path, plt, n, title):
 
 def generateProfiles():
   plt.figure(figsize=(30,5))
-  makePredictions(path + '/TestData/1.txt', plt, 131, 'Example profile 1')
-  makePredictions(path + '/TestData/2.txt', plt, 132, 'Example profile 2')
-  makePredictions(path + '/TestData/3.txt', plt, 133, 'Example profile 3')
-  plt.show()
+  makePredictions(path + '/Test/Data/999.txt', plt, 131, 'Sample from normal test set')
+  makePredictions(path + '/Test/DataNoDrop/0.txt', plt, 132, 'Sample from no-drop test set')
+  makePredictions(path + '/Test/DataNoHarm/0.txt', plt, 133, 'Sample from no-harmonica test set')
+  plt.savefig(path + 'plot.png')
 
 generateProfiles()
