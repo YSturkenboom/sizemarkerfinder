@@ -14,7 +14,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 WEIGHTS_PATH = "/tmp/weights.h5"
 
 # LOAD MODEL FROM FILE
-model = create_model()
+model = Sequential()
 model.load_weights(WEIGHTS_PATH)
 
 def generateProfile(data, predictions, plt, n, title):
