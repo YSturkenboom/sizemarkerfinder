@@ -25,7 +25,7 @@ adam = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.000000
 model.compile(optimizer=adam,
               loss='mean_squared_error')
 
-model.load_weights(pat + WEIGHTS_PATH)
+model.load_weights(path + WEIGHTS_PATH)
 
 def generateProfile(data, predictions, plt, n, title):
   profile = data[0]
