@@ -53,10 +53,10 @@ def readData(data_path, amount):
     for idx, f in tqdm(enumerate(files[:amount])):
         with open(f, 'r') as file:
             hmm = time.time()
-            stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
-            print('stuff', len(stuff), stuff.size, stuff)
-            data[idx] = stuff
-            print('array assignment time pre-alloc size', str(time.time() - hmm))
+            # stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
+            # print('stuff', len(stuff), stuff.size, stuff)
+            data[idx] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
+            # print('array assignment time pre-alloc size', str(time.time() - hmm))
 
     data = np.transpose(data)
 
