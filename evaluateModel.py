@@ -11,6 +11,7 @@ from tensorflow import keras
 from tqdm import tqdm
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 
+path = os.getcwd()
 WEIGHTS_PATH = "/tmp/weights.h5"
 
 # LOAD MODEL FROM FILE
@@ -23,8 +24,8 @@ model = keras.Sequential([
 adam = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0000001, decay=0.0, amsgrad=False)
 model.compile(optimizer=adam,
               loss='mean_squared_error')
-              
-model.load_weights(WEIGHTS_PATH)
+
+model.load_weights(pat + WEIGHTS_PATH)
 
 def generateProfile(data, predictions, plt, n, title):
   profile = data[0]
