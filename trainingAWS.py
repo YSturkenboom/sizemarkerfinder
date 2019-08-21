@@ -52,7 +52,7 @@ def readData(data_path, amount):
     for idx, f in enumerate(files[:amount]):
         with open(f, 'r') as file:
             hmm = time.time()
-            data[idx] = np.dstack((list(csv.reader(file))[1:], data))
+            data[idx] = list(csv.reader(file))[1:]
             print('array assignment time pre-alloc size', str(time.time() - hmm))
 
     data = np.transpose(data)
