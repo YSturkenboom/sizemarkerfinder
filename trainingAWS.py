@@ -56,8 +56,8 @@ def readData(data_path, amount):
                 data = np.array(list(csv.reader(file))[1:])
             else:
                 hmm = time.time()
-                data = np.dstack((data, list(csv.reader(file))[1:]))
-                print('dstack time', str(time.time() - hmm))
+                data = np.dstack((list(csv.reader(file))[1:], data))
+                print('dstack flipped time', str(time.time() - hmm))
 
     data = np.transpose(data)
     labels = np.array([])
