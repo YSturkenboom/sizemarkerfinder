@@ -45,19 +45,15 @@ with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'w') as 
 print('n_samples', n_samples, 'n_epochs', n_epochs)
 
 def readData(data_path, amount):
-    data = np.array([])
-
     files = [f for f in glob.glob(path + data_path)]
     random.shuffle(files)
+    data = np.zeros((len(files),))
     print(data_path)
-    for f in tqdm(files[:amount]):
+    for idx, f in tqdm(files[:amount]):
         with open(f, 'r') as file:
-            if (data.size == 0):
-                data = np.array(list(csv.reader(file))[1:])
-            else:
-                hmm = time.time()
-                data = np.dstack((list(csv.reader(file))[1:], data))
-                print('dstack flipped time', str(time.time() - hmm))
+            hmm = time.time()
+            data[idx] = np.dstack((list(csv.reader(file))[1:], data))
+            print('dstack flipped time', str(time.time() - hmm))
 
     data = np.transpose(data)
     labels = np.array([])
