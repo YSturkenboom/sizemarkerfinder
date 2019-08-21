@@ -47,13 +47,13 @@ print('n_samples', n_samples, 'n_epochs', n_epochs)
 def readData(data_path, amount):
     files = [f for f in glob.glob(path + data_path)]
     random.shuffle(files)
-    data = np.zeros((len(files),))
+    data = np.zeros(amount,))
     print(data_path)
-    for idx, f in tqdm(files[:amount]):
+    for idx, f in files[:amount]:
         with open(f, 'r') as file:
             hmm = time.time()
             data[idx] = np.dstack((list(csv.reader(file))[1:], data))
-            print('dstack flipped time', str(time.time() - hmm))
+            print('array assignment time pre-alloc size', str(time.time() - hmm))
 
     data = np.transpose(data)
     labels = np.array([])
