@@ -30,6 +30,7 @@ hyperparam_names = ['n_samples', 'n_epochs', 'shuffle', 'normalize', 'model_vers
 # v1 conv, flatten, 100 dense, 31 dense
 # v2 conv, flatten, 100 dense, 100 dense, 31 dense
 os.mkdir(path + '/experiments/' + experimentName)
+os.environ["CUDA_VISIBLE_DEVICES"] = 0
 
 csv_logger = CSVLogger(path + '/experiments/' + experimentName + '/log.csv')
 checkpointer = ModelCheckpoint(filepath=path+'/tmp/weights.hdf5', verbose=1, save_best_only=True, mode='min', monitor='loss')
