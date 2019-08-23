@@ -21,8 +21,9 @@ model = keras.Sequential([
 #     keras.layers.Dense(100, activation='linear'),
     keras.layers.Dense(31, activation='linear')
 ])
-adam = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0000001, decay=0.0, amsgrad=False)
-model.compile(optimizer=adam,
+optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0001, decay=0.0, amsgrad=False)
+# optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
+model.compile(optimizer=optimizer,
               loss='mean_squared_error')
 
 model.load_weights(path + WEIGHTS_PATH)
@@ -31,14 +32,14 @@ def generateProfile(data, predictions, plt, n, title):
   profile = data[0]
   pred_array = np.zeros(25000)
   for pred in predictions[0]:
-    if (pred < 25000):
+    if (pred < 25000 and pred >= 0):
       pred_array[int(round(pred))] = 0.1
       
   profile = np.hstack((profile, pred_array.reshape(25000,1)))
 
   plt.subplot(n)
   plt.plot(profile[:,0], profile[:,1], linewidth=1, color='black', alpha=0.25,)
-  plt.plot(profile[:,0], profile[:,2], linewidth=1, color='lime', alpha=0.25);
+  plt.plot(profile[:,0], profile[:,2], linewidth=1, color='lime', alpha=0.25)
   plt.ylabel('RFU')
   plt.title(title)
 
