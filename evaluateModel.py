@@ -10,7 +10,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tqdm import tqdm
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
-from tensorflow.keras import load_model
+from tensorflow.keras.models import load_model
 
 path = os.getcwd()
 WEIGHTS_PATH = "/experiments/TimingTest/model.h5"
