@@ -19,8 +19,8 @@ experimentName = 'TimingTest'
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 10
-n_epochs = 10
+n_samples = 1000
+n_epochs = 1000
 model_version = 'v1'
 shuffle = True
 normalize = True
