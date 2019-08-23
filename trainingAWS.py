@@ -56,8 +56,6 @@ def readData(data_path, amount):
             # print('stuff', len(stuff), stuff.size, stuff)
             data[idx] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             # print('array assignment time pre-alloc size', str(time.time() - hmm))
-
-    print(data.shape)
     # data = np.transpose(data)
 
     for idx, experiment in tqdm(enumerate(data)):
@@ -68,11 +66,11 @@ def readData(data_path, amount):
       labels[idx] = sizemarker_pos
       # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
 
-    print(labels.shape)
-    
     return (data[:,0:1], labels)
 
 (data, labels) = readData('/Data/*.txt', n_samples)
+print(data.shape)
+print(labels.shape)
 (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
 (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
 training_set = np.vstack((data, dataNoDrop, dataNoHarm))
