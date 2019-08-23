@@ -82,9 +82,10 @@ training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
 
 # print('size', data.size, labels.size)
 
-(test_set, test_labels) = readData('/Test/*/*.txt', 10)
+(test_set, test_labels) = readData('/Test/*/*.txt', n_samples)
 
 print('size', test_set.size, test_labels.size)
+print('nan', training_set[0], test_set[0])
 
 if (normalize):
   # normalize: divide RFU by 1000, time by 25000, labels by 1500
