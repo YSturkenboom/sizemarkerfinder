@@ -66,7 +66,7 @@ def readData(data_path, amount):
       labels[idx] = sizemarker_pos
       # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
 
-    return (data[:,0:1], labels)
+    return (data[:,:,:2], labels)
 
 (data, labels) = readData('/Data/*.txt', n_samples)
 print(data.shape)
