@@ -112,7 +112,7 @@ if (generate_log):
   callbacks.append(csv_logger)
   
 startFit = time.time()
-model.fit(training_set, training_labels, validation_split=0.2, shuffle=shuffle, batch_size=32, epochs=n_epochs, callbacks=callbacks)
+model.fit(training_set, training_labels, validation_split=0.2, shuffle=shuffle, batch_size=31, epochs=n_epochs, callbacks=callbacks)
 
 test_loss = model.evaluate(test_set, test_labels)
 with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'a') as f:
