@@ -14,7 +14,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'ExpA'
+experimentName = 'TimingTest'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
@@ -52,7 +52,6 @@ def readData(data_path, amount):
     print(data_path)
     for idx, f in tqdm(enumerate(files[:amount])):
         with open(f, 'r') as file:
-            hmm = time.time()
             # stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             # print('stuff', len(stuff), stuff.size, stuff)
             data[idx] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
