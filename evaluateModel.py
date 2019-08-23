@@ -43,16 +43,16 @@ def generateProfile(data, predictions, plt, n, title):
   plt.title(title)
 
 def makePredictions(prediction_data_path, plt, n, title):
-  pred_data = []
+  pred_data = [1, 25000, 3]
   with open(prediction_data_path, 'r') as file:
-    pred_data = np.array(list(csv.reader(file))[1:])
+    pred_data = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2))
 
   # select columns of interest: RFU and time
-  pred_data = pred_data[:,1:3].astype(float)
+  # pred_data = pred_data[:,1:3].astype(float)
 
   # normalize
-  pred_data = np.divide(pred_data, 25000)
-  pred_data = np.expand_dims(pred_data, axis=0)
+  # pred_data = np.divide(pred_data, 25000)
+  # pred_data = np.expand_dims(pred_data, axis=0)
 
   predictions = model.predict(pred_data)
   print(predictions)
