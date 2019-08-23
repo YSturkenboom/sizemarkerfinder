@@ -100,8 +100,8 @@ model = keras.Sequential([
 #     keras.layers.Dense(100, activation='linear'),
     keras.layers.Dense(31, activation='linear')
 ])
-# optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0000001, decay=0.0, amsgrad=False)
-optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
+optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0001, decay=0.0, amsgrad=False)
+# optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
 model.compile(optimizer=optimizer,
               loss='mean_squared_error')
 
@@ -112,7 +112,7 @@ if (generate_log):
   callbacks.append(csv_logger)
   
 startFit = time.time()
-model.fit(training_set, training_labels, validation_split=0.2, shuffle=shuffle, batch_size=31, epochs=n_epochs, callbacks=callbacks)
+model.fit(training_set, training_labels, validation_split=0.2, shuffle=shuffle, batch_size=32, epochs=n_epochs, callbacks=callbacks)
 
 test_loss = model.evaluate(test_set, test_labels)
 with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'a') as f:
