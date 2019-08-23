@@ -48,7 +48,7 @@ def readData(data_path, amount):
     files = [f for f in glob.glob(path + data_path)]
     random.shuffle(files)
     data = np.zeros((amount, 25000, 3))
-    labels = np.zeros((amount,))
+    labels = np.zeros((amount, 1))
     print(data_path)
     for idx, f in tqdm(enumerate(files[:amount])):
         with open(f, 'r') as file:
