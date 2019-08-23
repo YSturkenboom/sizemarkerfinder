@@ -19,7 +19,7 @@ experimentName = 'TimingTest'
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 100
+n_samples = 10
 n_epochs = 100
 model_version = 'v1'
 shuffle = True
@@ -120,8 +120,9 @@ with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'a') as 
   f.write('test_loss: ' + str(test_loss))
 print('Test loss', test_loss)
 
-model.save("model_{}_{}.h5".format(n_samples,n_epochs))
+
 print('Test loss', test_loss)
 
 if (save_model):
-  model.save_weights(path + '/tmp/weights.h5')
+  model.save(path + '/experiments/' + experimentName +  "/model.h5")
+  # model.save_weights(path + '/experiments/' + experimentName + '/weights.h5')

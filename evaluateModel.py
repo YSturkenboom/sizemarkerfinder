@@ -10,23 +10,24 @@ import tensorflow as tf
 from tensorflow import keras
 from tqdm import tqdm
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
+from tensorflow.keras import load_model
 
 path = os.getcwd()
-WEIGHTS_PATH = "/tmp/weights.h5"
+WEIGHTS_PATH = "/experiments/TimingTest/model.h5"
 
 # LOAD MODEL FROM FILE
-model = keras.Sequential([
-    keras.layers.Conv1D(31, 250, activation='linear', input_shape=(25000, 2)),
-    keras.layers.Flatten(),
-#     keras.layers.Dense(100, activation='linear'),
-    keras.layers.Dense(31, activation='linear')
-])
-optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0001, decay=0.0, amsgrad=False)
-# optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
-model.compile(optimizer=optimizer,
-              loss='mean_squared_error')
+# model = keras.Sequential([
+#     keras.layers.Conv1D(31, 250, activation='linear', input_shape=(25000, 2)),
+#     keras.layers.Flatten(),
+# #     keras.layers.Dense(100, activation='linear'),
+#     keras.layers.Dense(31, activation='linear')
+# ])
+# optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0001, decay=0.0, amsgrad=False)
+# # optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
+# model.compile(optimizer=optimizer,
+#               loss='mean_squared_error')
 
-model.load_weights(path + WEIGHTS_PATH)
+model = load_model(path + WEIGHTS_PATH)
 
 def generateProfile(data, predictions, plt, n, title):
   profile = data[0]
