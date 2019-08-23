@@ -20,12 +20,12 @@ from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
 n_samples = 1000
-n_epochs = 1000
+n_epochs = 15
 model_version = 'v1'
 shuffle = True
 normalize = True
 generate_log = True
-checkpoints = False
+checkpoints = True
 save_model = True
 hyperparams = [n_samples, n_epochs, shuffle, normalize, model_version]
 hyperparam_names = ['n_samples', 'n_epochs', 'shuffle', 'normalize', 'model_version']
