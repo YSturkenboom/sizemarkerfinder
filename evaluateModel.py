@@ -43,7 +43,6 @@ def generateProfile(data, predictions, plt, n, title):
   plt.title(title)
 
 def makePredictions(prediction_data_path, plt, n, title):
-  pred_data = [1, 25000, 3]
   with open(prediction_data_path, 'r') as file:
     pred_data = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2))
 
@@ -54,10 +53,10 @@ def makePredictions(prediction_data_path, plt, n, title):
   # pred_data = np.divide(pred_data, 25000)
   # pred_data = np.expand_dims(pred_data, axis=0)
 
-  predictions = model.predict(pred_data)
-  print(predictions)
+    predictions = model.predict(pred_data)
+    print(predictions)
 
-  generateProfile(pred_data, predictions, plt, n, title)
+    generateProfile(pred_data, predictions, plt, n, title)
 
 def generateProfiles():
   plt.figure(figsize=(30,5))
