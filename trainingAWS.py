@@ -70,7 +70,7 @@ def readData(data_path, amount):
 
     print(labels.shape)
     
-    return (data, labels)
+    return (data[:,0:1], labels)
 
 (data, labels) = readData('/Data/*.txt', n_samples)
 (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
@@ -79,7 +79,7 @@ training_set = np.vstack((data, dataNoDrop, dataNoHarm))
 training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
 # print('size', training_set.size, training_labels.size)
 
-# # select columns of interest: RFU and time
+# # # select columns of interest: RFU and time
 # training_set = np.transpose(training_set[:,1:3], (0, 2, 1))
 
 # print('size', data.size, labels.size)
