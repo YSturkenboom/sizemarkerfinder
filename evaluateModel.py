@@ -55,6 +55,7 @@ def makePredictions(prediction_data_path, plt, n, title):
   pred_data = np.expand_dims(pred_data, axis=0)
 
   predictions = model.predict(pred_data)
+  print(predictions)
 
   generateProfile(pred_data, predictions, plt, n, title)
 
