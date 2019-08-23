@@ -77,19 +77,19 @@ def readData(data_path, amount):
 (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
 training_set = np.vstack((data, dataNoDrop, dataNoHarm))
 training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
-print('size', training_set.size, training_labels.size)
+# print('size', training_set.size, training_labels.size)
 
-# select columns of interest: RFU and time
-training_set = np.transpose(training_set[:,1:3], (0, 2, 1))
+# # select columns of interest: RFU and time
+# training_set = np.transpose(training_set[:,1:3], (0, 2, 1))
 
-print('size', data.size, labels.size)
+# print('size', data.size, labels.size)
 
 (test_set, test_labels) = readData('/Test/*/*.txt', 10)
 
 print('size', test_set.size, test_labels.size)
 
 # select columns of interest: RFU and time
-test_set = np.transpose(test_set[:,1:3], (0, 2, 1))
+# test_set = np.transpose(test_set[:,1:3], (0, 2, 1))
 
 model = keras.Sequential([
     keras.layers.Conv1D(31, 250, activation='linear', input_shape=(25000, 2)),
