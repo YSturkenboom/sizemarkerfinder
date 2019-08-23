@@ -45,7 +45,12 @@ def generateProfile(data, predictions, plt, n, title):
 
 def makePredictions(prediction_data_path, plt, n, title):
   with open(prediction_data_path, 'r') as file:
-    pred_data = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
+    pred_data = np.zeros((1, 25000, 3))
+    pred_data[0] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
+    pred_data = pred_data[:,:,:2]
+
+    print(pred_data.shape, pred_data)
+
 
   # select columns of interest: RFU and time
   # pred_data = pred_data[:,1:3].astype(float)
@@ -53,8 +58,7 @@ def makePredictions(prediction_data_path, plt, n, title):
   # normalize
     pred_data = np.divide(pred_data, 25000)
 
-    pred_data = np.expand_dims(pred_data, axis=0)
-    pred_data = pred_data[:,:,:2]
+    # pred_data = np.expand_dims(pred_data, axis=0)
     print(pred_data.shape, pred_data)
     
     predictions = model.predict(pred_data)
