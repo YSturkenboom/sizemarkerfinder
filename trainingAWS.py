@@ -19,8 +19,8 @@ experimentName = 'TimingTest'
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 10
-n_epochs = 100
+n_samples = 1000
+n_epochs = 1000
 model_version = 'v1'
 shuffle = True
 normalize = True
@@ -100,7 +100,7 @@ model = keras.Sequential([
 #     keras.layers.Dense(100, activation='linear'),
     keras.layers.Dense(31, activation='linear')
 ])
-optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0001, decay=0.0, amsgrad=False)
+optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.01, decay=0.0, amsgrad=False)
 # optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
 model.compile(optimizer=optimizer,
               loss='mean_squared_error')
