@@ -51,7 +51,7 @@ def makePredictions(prediction_data_path, plt, n, title):
 
   # normalize
   # pred_data = np.divide(pred_data, 25000)
-  # pred_data = np.expand_dims(pred_data, axis=0)
+    pred_data = np.expand_dims(pred_data, axis=0)
 
     predictions = model.predict(pred_data)
     print(predictions)
