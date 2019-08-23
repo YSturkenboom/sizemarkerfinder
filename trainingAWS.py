@@ -19,8 +19,8 @@ experimentName = 'TimingTest'
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 1000
-n_epochs = 1000
+n_samples = 10
+n_epochs = 10
 model_version = 'v1'
 shuffle = True
 normalize = True
@@ -59,27 +59,13 @@ def readData(data_path, amount):
 
     data = np.transpose(data)
 
-    for experiment in data:
-        if (len(labels) == 0):
-            sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[4] != '-1')
-
-            # experimental: if missing sizemarkers add -1's
-            for i in range(31- len(sizemarker_pos)):
-                sizemarker_pos.append(-1)
-
-            # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
-
-            labels = sizemarker_pos
-        else:
-            sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[4] != '-1')
-
-            # experimental: if missing sizemarkers add -1's
-            for i in range(31- len(sizemarker_pos)):
-                sizemarker_pos.append(-1)
-
-            # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
-
-            labels = np.vstack((labels, sizemarker_pos))
+    for idx, experiment in tqdm(enumerate(data)):
+      sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[2] != '-1')
+      for _ in range(31- len(sizemarker_pos)):
+        sizemarker_pos.append(-1)
+      
+      labels[idx] = sizemarker_pos
+      # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
     
     return (data, labels)
 
