@@ -20,7 +20,7 @@ from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
 n_samples = 1000
-n_epochs = 1000
+n_epochs = 100
 model_version = 'v1'
 shuffle = True
 normalize = True
@@ -86,6 +86,10 @@ training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
 
 print('size', test_set.size, test_labels.size)
 
+if (normalize):
+  # normalize: divide RFU by 1000, time by 25000, labels by 1500
+  training_set = np.divide(training_set, 25000)
+  test_set = np.divide(test_set, 25000)
 # select columns of interest: RFU and time
 # test_set = np.transpose(test_set[:,1:3], (0, 2, 1))
 
@@ -95,8 +99,9 @@ model = keras.Sequential([
 #     keras.layers.Dense(100, activation='linear'),
     keras.layers.Dense(31, activation='linear')
 ])
-adam = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0000001, decay=0.0, amsgrad=False)
-model.compile(optimizer=adam,
+# optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0000001, decay=0.0, amsgrad=False)
+optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
+model.compile(optimizer=optimizer,
               loss='mean_squared_error')
 
 callbacks = []
