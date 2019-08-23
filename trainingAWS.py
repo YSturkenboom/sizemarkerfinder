@@ -57,7 +57,7 @@ def readData(data_path, amount):
             data[idx] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             # print('array assignment time pre-alloc size', str(time.time() - hmm))
 
-    data = np.transpose(data)
+    # data = np.transpose(data)
 
     for idx, experiment in tqdm(enumerate(data)):
       sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[2] != '-1')
