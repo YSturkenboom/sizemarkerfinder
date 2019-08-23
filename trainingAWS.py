@@ -70,7 +70,7 @@ def readData(data_path, amount):
 
 (data, labels) = readData('/Data/*.txt', n_samples)
 print(data.shape)
-print(labels.shape)
+print(labels.shape, labels[0])
 (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
 (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
 training_set = np.vstack((data, dataNoDrop, dataNoHarm))
