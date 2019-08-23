@@ -59,6 +59,7 @@ def readData(data_path, amount):
     # data = np.transpose(data)
 
     for idx, experiment in tqdm(enumerate(data)):
+      print(experiment, np.transpose(experiment), np.transpose(experiment)[0])
       sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[2] != '-1')
       for _ in range(31- len(sizemarker_pos)):
         sizemarker_pos.append(-1)
