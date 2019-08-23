@@ -19,7 +19,7 @@ experimentName = 'TimingTest'
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 1000
+n_samples = 10
 n_epochs = 15
 model_version = 'v1'
 shuffle = True
