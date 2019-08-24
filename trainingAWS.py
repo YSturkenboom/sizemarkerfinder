@@ -19,8 +19,8 @@ experimentName = 'TimingTest'
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 10
-n_epochs = 15
+n_samples = 1000
+n_epochs = 1000
 model_version = 'v1'
 shuffle = True
 normalize = True
@@ -35,7 +35,7 @@ hyperparam_names = ['n_samples', 'n_epochs', 'shuffle', 'normalize', 'model_vers
 os.mkdir(path + '/experiments/' + experimentName)
 
 csv_logger = CSVLogger(path + '/experiments/' + experimentName + '/log.csv')
-checkpointer = ModelCheckpoint(filepath=path+'/tmp/weights.hdf5', verbose=1, save_best_only=True, mode='min', monitor='loss')
+checkpointer = ModelCheckpoint(filepath=path+'/experiments/checkpoint_weights.hdf5', verbose=1, save_best_only=True, mode='min', monitor='loss')
 
 # LOG OUT HYPERPARAMETERS
 with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'w') as f:
