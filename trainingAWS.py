@@ -54,18 +54,27 @@ def readData(data_path, amount):
         with open(f, 'r') as file:
             # stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             # print('stuff', len(stuff), stuff.size, stuff)
-            data[idx] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
+            loadeddata =  np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
+            data[idx] = loadeddata
+            
+            sizemarker_pos = list(int(datapoint[1]) for datapoint in loadeddata if datapoint[2] != '-1')
+            for _ in range(31- len(sizemarker_pos)):
+              sizemarker_pos.append(-1)
+
+            labels[idx] = sizemarker_pos
+
+            print(sizemarker_pos)
             # print('array assignment time pre-alloc size', str(time.time() - hmm))
     # data = np.transpose(data)
 
-    for idx, experiment in tqdm(enumerate(data)):
-      print(experiment, np.transpose(experiment), np.transpose(experiment)[0])
-      sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[2] != '-1')
-      for _ in range(31- len(sizemarker_pos)):
-        sizemarker_pos.append(-1)
+    # for idx, experiment in tqdm(enumerate(data)):
+    #   print(experiment, np.transpose(experiment), np.transpose(experiment)[0])
+    #   sizemarker_pos = list(int(datapoint[1]) for datapoint in np.transpose(experiment) if datapoint[2] != '-1')
+    #   for _ in range(31- len(sizemarker_pos)):
+    #     sizemarker_pos.append(-1)
       
-      labels[idx] = sizemarker_pos
-      # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
+    #   labels[idx] = sizemarker_pos
+    #   # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
 
     return (data[:,:,:2], labels)
 
