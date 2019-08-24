@@ -61,9 +61,11 @@ def readData(data_path, amount):
             for _ in range(31- len(sizemarker_pos)):
               sizemarker_pos.append(-1)
 
+            print(sizemarker_pos)
+
             labels[idx] = sizemarker_pos
 
-            print(sizemarker_pos)
+            
             # print('array assignment time pre-alloc size', str(time.time() - hmm))
     # data = np.transpose(data)
 
