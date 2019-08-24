@@ -57,6 +57,8 @@ def readData(data_path, amount):
             loadeddata =  np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             data[idx] = loadeddata
             
+            print('loaded', loadeddata)
+
             sizemarker_pos = list(int(datapoint[1]) for datapoint in loadeddata if datapoint[2] != '-1')
             for _ in range(31- len(sizemarker_pos)):
               sizemarker_pos.append(-1)
