@@ -14,7 +14,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'TimingTest'
+experimentName = 'Aug29'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
