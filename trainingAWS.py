@@ -14,14 +14,14 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Aug29Trial'
+experimentName = 'Aug29Final'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 80
-n_samples_val = 20
-n_epochs = 25
+n_samples = 800
+n_samples_val = 200
+n_epochs = 1000
 model_version = 'v1'
 shuffle = True
 normalize = True
@@ -130,7 +130,7 @@ def generateProfiles(current_model, epoch):
   plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-test.png')
 
 class PlotCallback(tf.keras.callbacks.Callback):
-  def on_epoch_end(self, epoch, logs={}):
+  def on_epoch_start(self, epoch, logs={}):
     if (epoch in create_plots_at_epochs): 
       generateProfiles(self.model, epoch)
 
