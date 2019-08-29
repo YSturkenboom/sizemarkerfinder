@@ -52,7 +52,7 @@ def makePredictions(prediction_data_path, plt, n1, n2, n3, title):
     pred_data[0] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
     pred_data = pred_data[:,:,:2]
 
-    print(pred_data.shape, pred_data)
+    # print(pred_data.shape, pred_data)
 
 
   # select columns of interest: RFU and time
@@ -62,16 +62,16 @@ def makePredictions(prediction_data_path, plt, n1, n2, n3, title):
     pred_data = np.divide(pred_data, 25000)
 
     # pred_data = np.expand_dims(pred_data, axis=0)
-    print(pred_data.shape, pred_data)
+    # print(pred_data.shape, pred_data)
     
     predictions = model.predict(pred_data)
-    print(predictions)
+    # print(predictions)
 
     generateProfile(pred_data, predictions, plt, n1, n2, n3, title)
 
 def generateProfiles():
-  plt.figure(figsize=(30,5))
-  plt.title('Test set profiles')
+  plt.figure(figsize=(30,15))
+  plt.suptitle("Test set profiles", fontsize=16)
   makePredictions(path + '/Test/Data/999.txt', plt, 3,5,1, 'Sample from normal test set')
   makePredictions(path + '/Test/Data/979.txt', plt, 3,5,2, 'Sample from normal test set')
   makePredictions(path + '/Test/Data/959.txt', plt, 3,5,3, 'Sample from normal test set')
@@ -89,23 +89,23 @@ def generateProfiles():
   makePredictions(path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
   plt.savefig(path + '/plot-test.png')
 
-  plt.figure(figsize=(30,5))
-  plt.title('Training set profiles')
-  makePredictions(path + '/Data/999.txt', plt, 351, 'Sample from normal test set')
-  makePredictions(path + '/Data/799.txt', plt, 352, 'Sample from normal test set')
-  makePredictions(path + '/Data/599.txt', plt, 353, 'Sample from normal test set')
-  makePredictions(path + '/Data/399.txt', plt, 354, 'Sample from normal test set')
-  makePredictions(path + '/Data/299.txt', plt, 355, 'Sample from normal test set')
-  makePredictions(path + '/DataNoDrop/0.txt', plt, 356, 'Sample from no-drop test set')
-  makePredictions(path + '/DataNoDrop/200.txt', plt, 357, 'Sample from no-drop test set')
-  makePredictions(path + '/DataNoDrop/400.txt', plt, 358, 'Sample from no-drop test set')
-  makePredictions(path + '/DataNoDrop/600.txt', plt, 359, 'Sample from no-drop test set')
-  makePredictions(path + '/DataNoDrop/800.txt', plt, 3510, 'Sample from no-drop test set')
-  makePredictions(path + '/DataNoHarm/0.txt', plt, 3511, 'Sample from no-harmonica test set')
-  makePredictions(path + '/DataNoHarm/200.txt', plt, 3512, 'Sample from no-harmonica test set')
-  makePredictions(path + '/DataNoHarm/400.txt', plt, 3513, 'Sample from no-harmonica test set')
-  makePredictions(path + '/DataNoHarm/600.txt', plt, 3514, 'Sample from no-harmonica test set')
-  makePredictions(path + '/DataNoHarm/800.txt', plt, 3515, 'Sample from no-harmonica test set')
+  plt.figure(figsize=(30,15))
+  plt.suptitle("Training set profiles", fontsize=16)
+  makePredictions(path + '/Data/999.txt', plt, 3, 5, 1, 'Sample from normal test set')
+  makePredictions(path + '/Data/799.txt', plt, 3, 5, 2, 'Sample from normal test set')
+  makePredictions(path + '/Data/599.txt', plt, 3, 5, 3, 'Sample from normal test set')
+  makePredictions(path + '/Data/399.txt', plt, 3, 5, 4, 'Sample from normal test set')
+  makePredictions(path + '/Data/299.txt', plt, 3, 5, 5, 'Sample from normal test set')
+  makePredictions(path + '/DataNoDrop/0.txt', plt, 3, 5, 6, 'Sample from no-drop test set')
+  makePredictions(path + '/DataNoDrop/200.txt', plt, 3, 5, 7, 'Sample from no-drop test set')
+  makePredictions(path + '/DataNoDrop/400.txt', plt, 3, 5, 8, 'Sample from no-drop test set')
+  makePredictions(path + '/DataNoDrop/600.txt', plt, 3, 5, 9, 'Sample from no-drop test set')
+  makePredictions(path + '/DataNoDrop/800.txt', plt, 3, 5, 10, 'Sample from no-drop test set')
+  makePredictions(path + '/DataNoHarm/0.txt', plt, 3, 5, 11, 'Sample from no-harmonica test set')
+  makePredictions(path + '/DataNoHarm/200.txt', plt, 3, 5, 12, 'Sample from no-harmonica test set')
+  makePredictions(path + '/DataNoHarm/400.txt', plt, 3, 5, 13, 'Sample from no-harmonica test set')
+  makePredictions(path + '/DataNoHarm/600.txt', plt, 3, 5, 14, 'Sample from no-harmonica test set')
+  makePredictions(path + '/DataNoHarm/800.txt', plt, 3, 5, 15, 'Sample from no-harmonica test set')
   plt.savefig(path + '/plot-train.png')
 
 generateProfiles()
