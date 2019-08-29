@@ -72,7 +72,7 @@ def makePredictions(current_model, prediction_data_path, plt, n1, n2, n3, title)
 
 def generateProfiles(current_model, epoch):
   plt.figure(figsize=(30,15))
-  plt.suptitle("Experiment " + experimentName + ": Test set profiles at epoch " + epoch, fontsize=16)
+  plt.suptitle("Experiment " + experimentName + ": Test set profiles at epoch " + str(epoch), fontsize=16)
   makePredictions(current_model, path + '/Test/Data/999.txt', plt, 3,5,1, 'Sample from normal test set')
   makePredictions(current_model, path + '/Test/Data/979.txt', plt, 3,5,2, 'Sample from normal test set')
   makePredictions(current_model, path + '/Test/Data/959.txt', plt, 3,5,3, 'Sample from normal test set')
@@ -88,10 +88,10 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/Test/DataNoHarm/1020.txt', plt, 3,5,13, 'Sample from no-harmonica test set')
   makePredictions(current_model, path + '/Test/DataNoHarm/1030.txt', plt, 3,5,14, 'Sample from no-harmonica test set')
   makePredictions(current_model, path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
-  plt.savefig(path + '/experiments/plot-ep'+epoch+'-test.png')
+  plt.savefig(path + '/experiments/plot-ep'+str(epoch)+'-test.png')
 
   plt.figure(figsize=(30,15))
-  plt.suptitle("Experiment " + experimentName + ": Training set profiles at epoch " + epoch, fontsize=16)
+  plt.suptitle("Experiment " + experimentName + ": Training set profiles at epoch " + str(epoch), fontsize=16)
   makePredictions(current_model, path + '/Data/899.txt', plt, 3, 5, 1, 'Sample from normal training set')
   makePredictions(current_model, path + '/Data/699.txt', plt, 3, 5, 2, 'Sample from normal training set')
   makePredictions(current_model, path + '/Data/499.txt', plt, 3, 5, 3, 'Sample from normal training set')
@@ -107,7 +107,7 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/DataNoHarm/1400.txt', plt, 3, 5, 13, 'Sample from no-harmonica training set')
   makePredictions(current_model, path + '/DataNoHarm/1600.txt', plt, 3, 5, 14, 'Sample from no-harmonica training set')
   makePredictions(current_model, path + '/DataNoHarm/1800.txt', plt, 3, 5, 15, 'Sample from no-harmonica training set')
-  plt.savefig(path + '/experiments/plot-ep'+epoch+'-train.png')
+  plt.savefig(path + '/experiments/plot-ep'+str(epoch)+'-train.png')
 
 class PlotCallback(tf.keras.callbacks.Callback):
   def on_epoch_end(self, epoch, logs={}):
