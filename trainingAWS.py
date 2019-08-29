@@ -88,7 +88,7 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/Test/DataNoHarm/1020.txt', plt, 3,5,13, 'Sample from no-harmonica test set')
   makePredictions(current_model, path + '/Test/DataNoHarm/1030.txt', plt, 3,5,14, 'Sample from no-harmonica test set')
   makePredictions(current_model, path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
-  plt.savefig(path + '/plot-ep'+epoch+'-test.png')
+  plt.savefig(path + '/experiments/plot-ep'+epoch+'-test.png')
 
   plt.figure(figsize=(30,15))
   plt.suptitle("Experiment " + experimentName + ": Training set profiles at epoch " + epoch, fontsize=16)
@@ -107,7 +107,7 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/DataNoHarm/1400.txt', plt, 3, 5, 13, 'Sample from no-harmonica training set')
   makePredictions(current_model, path + '/DataNoHarm/1600.txt', plt, 3, 5, 14, 'Sample from no-harmonica training set')
   makePredictions(current_model, path + '/DataNoHarm/1800.txt', plt, 3, 5, 15, 'Sample from no-harmonica training set')
-  plt.savefig(path + '/plot-ep'+epoch+'-train.png')
+  plt.savefig(path + '/experiments/plot-ep'+epoch+'-train.png')
 
 class PlotCallback(tf.keras.callbacks.Callback):
   def on_epoch_end(self, epoch, logs={}):
@@ -133,7 +133,7 @@ def readData(data_path, amount):
     random.shuffle(files)
     data = np.zeros((amount, 25000, 3))
     labels = np.zeros((amount, 31))
-    print(data_path)
+    # print(data_path)
     for idx, f in tqdm(enumerate(files[:amount])):
         with open(f, 'r') as file:
             # stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
@@ -141,13 +141,13 @@ def readData(data_path, amount):
             loadeddata =  np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             data[idx] = loadeddata
             
-            print('loaded', loadeddata)
+            # print('loaded', loadeddata)
 
             sizemarker_pos = list(int(datapoint[0]) for datapoint in loadeddata if datapoint[2] != -1)
             for _ in range(31- len(sizemarker_pos)):
               sizemarker_pos.append(-1)
 
-            print(sizemarker_pos)
+            # print(sizemarker_pos)
 
             labels[idx] = sizemarker_pos
 
@@ -203,7 +203,7 @@ optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0
 model.compile(optimizer=optimizer,
               loss='mean_squared_error')
               
-from keras.utils import plot_model
+from tensorflow.keras.utils import plot_model
 plot_model(model, to_file=path + "/experiments/" + experimentName +  "/model.png")
 
 callbacks = []
