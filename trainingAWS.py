@@ -109,8 +109,9 @@ def generateProfiles():
   makePredictions(path + '/DataNoHarm/1800.txt', plt, 3, 5, 15, 'Sample from no-harmonica training set')
   plt.savefig(path + '/plot-train.png')
 
-def plot_epoch_begin(epoch, logs):
-  print('epoch', epoch, 'logs', logs)
+class PlotCallback(tf.keras.callbacks.Callback):
+  def on_epoch_begin(self, epoch, logs={}):
+    print('epoch', epoch, 'logs', logs)
 
 # v1 conv, flatten, 100 dense, 31 dense
 # v2 conv, flatten, 100 dense, 100 dense, 31 dense
@@ -207,7 +208,8 @@ if (checkpoints):
 if (generate_log):
   callbacks.append(csv_logger)
 if (len(create_plots_at_epochs) > 0):
-  plot_callback = LambdaCallback(on_epoch_begin=plot_epoch_begin)
+  plot_callback = PlotCallback()
+  callbacks.append(plot_callback)
   
 startFit = time.time()
 model.fit(training_set, training_labels, validation_split=0.2, shuffle=shuffle, batch_size=32, epochs=n_epochs, callbacks=callbacks)
