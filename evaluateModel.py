@@ -31,7 +31,7 @@ model.load_weights(path + WEIGHTS_PATH)
 #
 # model = load_model(path + MODEL_PATH)
 
-def generateProfile(data, predictions, plt, n, title):
+def generateProfile(data, predictions, plt, n1, n2, n3, title):
   profile = data[0]
   pred_array = np.zeros(25000)
   for pred in predictions[0]:
@@ -46,7 +46,7 @@ def generateProfile(data, predictions, plt, n, title):
   plt.ylabel('RFU')
   plt.title(title)
 
-def makePredictions(prediction_data_path, plt, n1, n2, n3 title):
+def makePredictions(prediction_data_path, plt, n1, n2, n3, title):
   with open(prediction_data_path, 'r') as file:
     pred_data = np.zeros((1, 25000, 3))
     pred_data[0] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
