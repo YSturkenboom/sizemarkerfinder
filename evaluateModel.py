@@ -40,13 +40,13 @@ def generateProfile(data, predictions, plt, n, title):
       
   profile = np.hstack((profile, pred_array.reshape(25000,1)))
 
-  plt.subplot(n)
+  plt.subplot(n1, n2, n3)
   plt.plot(profile[:,0], profile[:,1], linewidth=1, color='black', alpha=0.25,)
   plt.plot(profile[:,0], profile[:,2], linewidth=1, color='lime', alpha=0.25)
   plt.ylabel('RFU')
   plt.title(title)
 
-def makePredictions(prediction_data_path, plt, n, title):
+def makePredictions(prediction_data_path, plt, n1, n2, n3 title):
   with open(prediction_data_path, 'r') as file:
     pred_data = np.zeros((1, 25000, 3))
     pred_data[0] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
@@ -67,26 +67,26 @@ def makePredictions(prediction_data_path, plt, n, title):
     predictions = model.predict(pred_data)
     print(predictions)
 
-    generateProfile(pred_data, predictions, plt, n, title)
+    generateProfile(pred_data, predictions, plt, n1, n2, n3, title)
 
 def generateProfiles():
   plt.figure(figsize=(30,5))
   plt.title('Test set profiles')
-  makePredictions(path + '/Test/Data/999.txt', plt, [3,5,1], 'Sample from normal test set')
-  makePredictions(path + '/Test/Data/979.txt', plt, [3,5,2], 'Sample from normal test set')
-  makePredictions(path + '/Test/Data/959.txt', plt, [3,5,3], 'Sample from normal test set')
-  makePredictions(path + '/Test/Data/939.txt', plt, [3,5,4], 'Sample from normal test set')
-  makePredictions(path + '/Test/Data/919.txt', plt, [3,5,5], 'Sample from normal test set')
-  makePredictions(path + '/Test/DataNoDrop/1000.txt', plt, [3,5,6], 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoDrop/1010.txt', plt, [3,5,7], 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoDrop/1020.txt', plt, [3,5,8], 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoDrop/1030.txt', plt, [3,5,9], 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoDrop/1040.txt', plt, [3,5,10], 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoHarm/1000.txt', plt, [3,5,11], 'Sample from no-harmonica test set')
-  makePredictions(path + '/Test/DataNoHarm/1010.txt', plt, [3,5,12], 'Sample from no-harmonica test set')
-  makePredictions(path + '/Test/DataNoHarm/1020.txt', plt, [3,5,13], 'Sample from no-harmonica test set')
-  makePredictions(path + '/Test/DataNoHarm/1030.txt', plt, [3,5,14], 'Sample from no-harmonica test set')
-  makePredictions(path + '/Test/DataNoHarm/1040.txt', plt, [3,5,15], 'Sample from no-harmonica test set')
+  makePredictions(path + '/Test/Data/999.txt', plt, 3,5,1, 'Sample from normal test set')
+  makePredictions(path + '/Test/Data/979.txt', plt, 3,5,2, 'Sample from normal test set')
+  makePredictions(path + '/Test/Data/959.txt', plt, 3,5,3, 'Sample from normal test set')
+  makePredictions(path + '/Test/Data/939.txt', plt, 3,5,4, 'Sample from normal test set')
+  makePredictions(path + '/Test/Data/919.txt', plt, 3,5,5, 'Sample from normal test set')
+  makePredictions(path + '/Test/DataNoDrop/1000.txt', plt, 3,5,6, 'Sample from no-drop test set')
+  makePredictions(path + '/Test/DataNoDrop/1010.txt', plt, 3,5,7, 'Sample from no-drop test set')
+  makePredictions(path + '/Test/DataNoDrop/1020.txt', plt, 3,5,8, 'Sample from no-drop test set')
+  makePredictions(path + '/Test/DataNoDrop/1030.txt', plt, 3,5,9, 'Sample from no-drop test set')
+  makePredictions(path + '/Test/DataNoDrop/1040.txt', plt, 3,5,10, 'Sample from no-drop test set')
+  makePredictions(path + '/Test/DataNoHarm/1000.txt', plt, 3,5,11, 'Sample from no-harmonica test set')
+  makePredictions(path + '/Test/DataNoHarm/1010.txt', plt, 3,5,12, 'Sample from no-harmonica test set')
+  makePredictions(path + '/Test/DataNoHarm/1020.txt', plt, 3,5,13, 'Sample from no-harmonica test set')
+  makePredictions(path + '/Test/DataNoHarm/1030.txt', plt, 3,5,14, 'Sample from no-harmonica test set')
+  makePredictions(path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
   plt.savefig(path + '/plot-test.png')
 
   plt.figure(figsize=(30,5))
