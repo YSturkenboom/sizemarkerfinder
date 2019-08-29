@@ -95,7 +95,7 @@ def generateProfiles():
   makePredictions(path + '/Data/699.txt', plt, 3, 5, 2, 'Sample from normal test set')
   makePredictions(path + '/Data/499.txt', plt, 3, 5, 3, 'Sample from normal test set')
   makePredictions(path + '/Data/299.txt', plt, 3, 5, 4, 'Sample from normal test set')
-  makePredictions(path + '/Data/99.txt', plt, 3, 5, 5, 'Sample from normal test set')
+  makePredictions(path + '/Data/90.txt', plt, 3, 5, 5, 'Sample from normal test set')
   makePredictions(path + '/DataNoDrop/0.txt', plt, 3, 5, 6, 'Sample from no-drop test set')
   makePredictions(path + '/DataNoDrop/200.txt', plt, 3, 5, 7, 'Sample from no-drop test set')
   makePredictions(path + '/DataNoDrop/400.txt', plt, 3, 5, 8, 'Sample from no-drop test set')
