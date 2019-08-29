@@ -27,7 +27,7 @@ normalize = True
 generate_log = True
 checkpoints = True
 save_model = True
-create_plots_at_epochs = [0,1,5,10,50,100,200,300,400,500,600,700,800,900,999]
+create_plots_at_epochs = [1,5,10,50,100,200,300,400,500,600,700,800,900,999]
 hyperparams = [n_samples, n_epochs, shuffle, normalize, model_version, create_plots_at_epochs]
 hyperparam_names = ['n_samples', 'n_epochs', 'shuffle', 'normalize', 'model_version', 'create_plots_at_epochs']
 
@@ -47,7 +47,7 @@ def generateProfile(data, predictions, plt, n1, n2, n3, title):
   plt.ylabel('RFU')
   plt.title(title)
 
-def makePredictions(prediction_data_path, plt, n1, n2, n3, title):
+def makePredictions(current_model, prediction_data_path, plt, n1, n2, n3, title):
   with open(prediction_data_path, 'r') as file:
     pred_data = np.zeros((1, 25000, 3))
     pred_data[0] = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
@@ -65,53 +65,54 @@ def makePredictions(prediction_data_path, plt, n1, n2, n3, title):
     # pred_data = np.expand_dims(pred_data, axis=0)
     # print(pred_data.shape, pred_data)
     
-    predictions = model.predict(pred_data)
+    predictions = current_model.predict(pred_data)
     # print(predictions)
 
     generateProfile(pred_data, predictions, plt, n1, n2, n3, title)
 
-def generateProfiles():
+def generateProfiles(current_model, epoch):
   plt.figure(figsize=(30,15))
-  plt.suptitle("Test set profiles", fontsize=16)
-  makePredictions(path + '/Test/Data/999.txt', plt, 3,5,1, 'Sample from normal test set')
-  makePredictions(path + '/Test/Data/979.txt', plt, 3,5,2, 'Sample from normal test set')
-  makePredictions(path + '/Test/Data/959.txt', plt, 3,5,3, 'Sample from normal test set')
-  makePredictions(path + '/Test/Data/939.txt', plt, 3,5,4, 'Sample from normal test set')
-  makePredictions(path + '/Test/Data/919.txt', plt, 3,5,5, 'Sample from normal test set')
-  makePredictions(path + '/Test/DataNoDrop/1000.txt', plt, 3,5,6, 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoDrop/1010.txt', plt, 3,5,7, 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoDrop/1020.txt', plt, 3,5,8, 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoDrop/1030.txt', plt, 3,5,9, 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoDrop/1040.txt', plt, 3,5,10, 'Sample from no-drop test set')
-  makePredictions(path + '/Test/DataNoHarm/1000.txt', plt, 3,5,11, 'Sample from no-harmonica test set')
-  makePredictions(path + '/Test/DataNoHarm/1010.txt', plt, 3,5,12, 'Sample from no-harmonica test set')
-  makePredictions(path + '/Test/DataNoHarm/1020.txt', plt, 3,5,13, 'Sample from no-harmonica test set')
-  makePredictions(path + '/Test/DataNoHarm/1030.txt', plt, 3,5,14, 'Sample from no-harmonica test set')
-  makePredictions(path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
-  plt.savefig(path + '/plot-test.png')
+  plt.suptitle("Experiment " + experimentName + ": Test set profiles at epoch " + epoch, fontsize=16)
+  makePredictions(current_model, path + '/Test/Data/999.txt', plt, 3,5,1, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/Data/979.txt', plt, 3,5,2, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/Data/959.txt', plt, 3,5,3, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/Data/939.txt', plt, 3,5,4, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/Data/919.txt', plt, 3,5,5, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1000.txt', plt, 3,5,6, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1010.txt', plt, 3,5,7, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1020.txt', plt, 3,5,8, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1030.txt', plt, 3,5,9, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1040.txt', plt, 3,5,10, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1000.txt', plt, 3,5,11, 'Sample from no-harmonica test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1010.txt', plt, 3,5,12, 'Sample from no-harmonica test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1020.txt', plt, 3,5,13, 'Sample from no-harmonica test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1030.txt', plt, 3,5,14, 'Sample from no-harmonica test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
+  plt.savefig(path + '/plot-ep'+epoch+'-test.png')
 
   plt.figure(figsize=(30,15))
-  plt.suptitle("Training set profiles", fontsize=16)
-  makePredictions(path + '/Data/899.txt', plt, 3, 5, 1, 'Sample from normal training set')
-  makePredictions(path + '/Data/699.txt', plt, 3, 5, 2, 'Sample from normal training set')
-  makePredictions(path + '/Data/499.txt', plt, 3, 5, 3, 'Sample from normal training set')
-  makePredictions(path + '/Data/299.txt', plt, 3, 5, 4, 'Sample from normal training set')
-  makePredictions(path + '/Data/90.txt', plt, 3, 5, 5, 'Sample from normal training set')
-  makePredictions(path + '/DataNoDrop/1100.txt', plt, 3, 5, 6, 'Sample from no-drop training set')
-  makePredictions(path + '/DataNoDrop/1200.txt', plt, 3, 5, 7, 'Sample from no-drop training set')
-  makePredictions(path + '/DataNoDrop/1400.txt', plt, 3, 5, 8, 'Sample from no-drop training set')
-  makePredictions(path + '/DataNoDrop/1600.txt', plt, 3, 5, 9, 'Sample from no-drop training set')
-  makePredictions(path + '/DataNoDrop/1800.txt', plt, 3, 5, 10, 'Sample from no-drop training set')
-  makePredictions(path + '/DataNoHarm/1100.txt', plt, 3, 5, 11, 'Sample from no-harmonica training set')
-  makePredictions(path + '/DataNoHarm/1200.txt', plt, 3, 5, 12, 'Sample from no-harmonica training set')
-  makePredictions(path + '/DataNoHarm/1400.txt', plt, 3, 5, 13, 'Sample from no-harmonica training set')
-  makePredictions(path + '/DataNoHarm/1600.txt', plt, 3, 5, 14, 'Sample from no-harmonica training set')
-  makePredictions(path + '/DataNoHarm/1800.txt', plt, 3, 5, 15, 'Sample from no-harmonica training set')
-  plt.savefig(path + '/plot-train.png')
+  plt.suptitle("Experiment " + experimentName + ": Training set profiles at epoch " + epoch, fontsize=16)
+  makePredictions(current_model, path + '/Data/899.txt', plt, 3, 5, 1, 'Sample from normal training set')
+  makePredictions(current_model, path + '/Data/699.txt', plt, 3, 5, 2, 'Sample from normal training set')
+  makePredictions(current_model, path + '/Data/499.txt', plt, 3, 5, 3, 'Sample from normal training set')
+  makePredictions(current_model, path + '/Data/299.txt', plt, 3, 5, 4, 'Sample from normal training set')
+  makePredictions(current_model, path + '/Data/90.txt', plt, 3, 5, 5, 'Sample from normal training set')
+  makePredictions(current_model, path + '/DataNoDrop/1100.txt', plt, 3, 5, 6, 'Sample from no-drop training set')
+  makePredictions(current_model, path + '/DataNoDrop/1200.txt', plt, 3, 5, 7, 'Sample from no-drop training set')
+  makePredictions(current_model, path + '/DataNoDrop/1400.txt', plt, 3, 5, 8, 'Sample from no-drop training set')
+  makePredictions(current_model, path + '/DataNoDrop/1600.txt', plt, 3, 5, 9, 'Sample from no-drop training set')
+  makePredictions(current_model, path + '/DataNoDrop/1800.txt', plt, 3, 5, 10, 'Sample from no-drop training set')
+  makePredictions(current_model, path + '/DataNoHarm/1100.txt', plt, 3, 5, 11, 'Sample from no-harmonica training set')
+  makePredictions(current_model, path + '/DataNoHarm/1200.txt', plt, 3, 5, 12, 'Sample from no-harmonica training set')
+  makePredictions(current_model, path + '/DataNoHarm/1400.txt', plt, 3, 5, 13, 'Sample from no-harmonica training set')
+  makePredictions(current_model, path + '/DataNoHarm/1600.txt', plt, 3, 5, 14, 'Sample from no-harmonica training set')
+  makePredictions(current_model, path + '/DataNoHarm/1800.txt', plt, 3, 5, 15, 'Sample from no-harmonica training set')
+  plt.savefig(path + '/plot-ep'+epoch+'-train.png')
 
 class PlotCallback(tf.keras.callbacks.Callback):
-  def on_epoch_begin(self, epoch, logs={}):
-    print('epoch', epoch, 'logs', logs)
+  def on_epoch_end(self, epoch, logs={}):
+    if (epoch in create_plots_at_epochs): 
+      generateProfiles(self.model, epoch)
 
 # v1 conv, flatten, 100 dense, 31 dense
 # v2 conv, flatten, 100 dense, 100 dense, 31 dense
@@ -201,6 +202,9 @@ optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.0
 # optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
 model.compile(optimizer=optimizer,
               loss='mean_squared_error')
+              
+from keras.utils import plot_model
+plot_model(model, to_file=path + "/experiments/" + experimentName +  "/model.png")
 
 callbacks = []
 if (checkpoints):
