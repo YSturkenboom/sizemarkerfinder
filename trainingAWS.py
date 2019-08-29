@@ -27,7 +27,7 @@ normalize = True
 generate_log = True
 checkpoints = True
 save_model = True
-create_plots_at_epochs = [1,5,10,50,100,200,300,400,500,600,700,800,900,999]
+create_plots_at_epochs = [0,1,5,10,50,100,200,300,400,500,600,700,800,900,999]
 hyperparams = [n_samples, n_epochs, shuffle, normalize, model_version, create_plots_at_epochs]
 hyperparam_names = ['n_samples', 'n_epochs', 'shuffle', 'normalize', 'model_version', 'create_plots_at_epochs']
 
@@ -88,7 +88,7 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/Test/DataNoHarm/1020.txt', plt, 3,5,13, 'Sample from no-harmonica test set')
   makePredictions(current_model, path + '/Test/DataNoHarm/1030.txt', plt, 3,5,14, 'Sample from no-harmonica test set')
   makePredictions(current_model, path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
-  plt.savefig(path + '/experiments/plot-ep'+str(epoch)+'-test.png')
+  plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-test.png')
 
   plt.figure(figsize=(30,15))
   plt.suptitle("Experiment " + experimentName + ": Training set profiles at epoch " + str(epoch), fontsize=16)
@@ -107,7 +107,7 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/DataNoHarm/1400.txt', plt, 3, 5, 13, 'Sample from no-harmonica training set')
   makePredictions(current_model, path + '/DataNoHarm/1600.txt', plt, 3, 5, 14, 'Sample from no-harmonica training set')
   makePredictions(current_model, path + '/DataNoHarm/1800.txt', plt, 3, 5, 15, 'Sample from no-harmonica training set')
-  plt.savefig(path + '/experiments/plot-ep'+str(epoch)+'-train.png')
+  plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-train.png')
 
 class PlotCallback(tf.keras.callbacks.Callback):
   def on_epoch_end(self, epoch, logs={}):
