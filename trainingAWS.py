@@ -14,22 +14,23 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Aug29'
+experimentName = 'Aug29Trial'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 10
-n_epochs = 10
+n_samples = 80
+n_samples_val = 20
+n_epochs = 25
 model_version = 'v1'
 shuffle = True
 normalize = True
 generate_log = True
-checkpoints = True
+checkpoints = False
 save_model = True
-create_plots_at_epochs = [0,1,5,10,50,100,200,300,400,500,600,700,800,900,999]
-hyperparams = [n_samples, n_epochs, shuffle, normalize, model_version, create_plots_at_epochs]
-hyperparam_names = ['n_samples', 'n_epochs', 'shuffle', 'normalize', 'model_version', 'create_plots_at_epochs']
+create_plots_at_epochs = [1,2,3,4,5,10,25,50,100,200,300,400,500,600,700,800,900,999]
+hyperparams = [n_samples, n_samples_val, n_epochs, shuffle, normalize, model_version, create_plots_at_epochs]
+hyperparam_names = ['n_samples', 'n_samples_val', 'n_epochs', 'shuffle', 'normalize', 'model_version', 'create_plots_at_epochs']
 
 
 def generateProfile(data, predictions, plt, n1, n2, n3, title):
@@ -72,25 +73,6 @@ def makePredictions(current_model, prediction_data_path, plt, n1, n2, n3, title)
 
 def generateProfiles(current_model, epoch):
   plt.figure(figsize=(30,15))
-  plt.suptitle("Experiment " + experimentName + ": Test set profiles at epoch " + str(epoch), fontsize=16)
-  makePredictions(current_model, path + '/Test/Data/999.txt', plt, 3,5,1, 'Sample from normal test set')
-  makePredictions(current_model, path + '/Test/Data/979.txt', plt, 3,5,2, 'Sample from normal test set')
-  makePredictions(current_model, path + '/Test/Data/959.txt', plt, 3,5,3, 'Sample from normal test set')
-  makePredictions(current_model, path + '/Test/Data/939.txt', plt, 3,5,4, 'Sample from normal test set')
-  makePredictions(current_model, path + '/Test/Data/919.txt', plt, 3,5,5, 'Sample from normal test set')
-  makePredictions(current_model, path + '/Test/DataNoDrop/1000.txt', plt, 3,5,6, 'Sample from no-drop test set')
-  makePredictions(current_model, path + '/Test/DataNoDrop/1010.txt', plt, 3,5,7, 'Sample from no-drop test set')
-  makePredictions(current_model, path + '/Test/DataNoDrop/1020.txt', plt, 3,5,8, 'Sample from no-drop test set')
-  makePredictions(current_model, path + '/Test/DataNoDrop/1030.txt', plt, 3,5,9, 'Sample from no-drop test set')
-  makePredictions(current_model, path + '/Test/DataNoDrop/1040.txt', plt, 3,5,10, 'Sample from no-drop test set')
-  makePredictions(current_model, path + '/Test/DataNoHarm/1000.txt', plt, 3,5,11, 'Sample from no-harmonica test set')
-  makePredictions(current_model, path + '/Test/DataNoHarm/1010.txt', plt, 3,5,12, 'Sample from no-harmonica test set')
-  makePredictions(current_model, path + '/Test/DataNoHarm/1020.txt', plt, 3,5,13, 'Sample from no-harmonica test set')
-  makePredictions(current_model, path + '/Test/DataNoHarm/1030.txt', plt, 3,5,14, 'Sample from no-harmonica test set')
-  makePredictions(current_model, path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
-  plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-test.png')
-
-  plt.figure(figsize=(30,15))
   plt.suptitle("Experiment " + experimentName + ": Training set profiles at epoch " + str(epoch), fontsize=16)
   makePredictions(current_model, path + '/Data/899.txt', plt, 3, 5, 1, 'Sample from normal training set')
   makePredictions(current_model, path + '/Data/699.txt', plt, 3, 5, 2, 'Sample from normal training set')
@@ -108,6 +90,44 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/DataNoHarm/1600.txt', plt, 3, 5, 14, 'Sample from no-harmonica training set')
   makePredictions(current_model, path + '/DataNoHarm/1800.txt', plt, 3, 5, 15, 'Sample from no-harmonica training set')
   plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-train.png')
+
+  plt.figure(figsize=(30,15))
+  plt.suptitle("Experiment " + experimentName + ": Validation set profiles at epoch " + str(epoch), fontsize=16)
+  makePredictions(current_model, path + '/Validation/Data/270.txt', plt, 3,5,1, 'Sample from normal validation set')
+  makePredictions(current_model, path + '/Validation/Data/260.txt', plt, 3,5,2, 'Sample from normal validation set')
+  makePredictions(current_model, path + '/Validation/Data/250.txt', plt, 3,5,3, 'Sample from normal validation set')
+  makePredictions(current_model, path + '/Validation/Data/240.txt', plt, 3,5,4, 'Sample from normal validation set')
+  makePredictions(current_model, path + '/Validation/Data/230.txt', plt, 3,5,5, 'Sample from normal validation set')
+  makePredictions(current_model, path + '/Validation/DataNoDrop/9600.txt', plt, 3,5,6, 'Sample from no-drop validation set')
+  makePredictions(current_model, path + '/Validation/DataNoDrop/9510.txt', plt, 3,5,7, 'Sample from no-drop validation set')
+  makePredictions(current_model, path + '/Validation/DataNoDrop/9520.txt', plt, 3,5,8, 'Sample from no-drop validation set')
+  makePredictions(current_model, path + '/Validation/DataNoDrop/9530.txt', plt, 3,5,9, 'Sample from no-drop validation set')
+  makePredictions(current_model, path + '/Validation/DataNoDrop/9540.txt', plt, 3,5,10, 'Sample from no-drop validation set')
+  makePredictions(current_model, path + '/Validation/DataNoHarm/9600.txt', plt, 3,5,11, 'Sample from no-harmonica validation set')
+  makePredictions(current_model, path + '/Validation/DataNoHarm/9510.txt', plt, 3,5,12, 'Sample from no-harmonica validation set')
+  makePredictions(current_model, path + '/Validation/DataNoHarm/9520.txt', plt, 3,5,13, 'Sample from no-harmonica validation set')
+  makePredictions(current_model, path + '/Validation/DataNoHarm/9530.txt', plt, 3,5,14, 'Sample from no-harmonica validation set')
+  makePredictions(current_model, path + '/Validation/DataNoHarm/9540.txt', plt, 3,5,15, 'Sample from no-harmonica validation set')
+  plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-val.png')
+
+  plt.figure(figsize=(30,15))
+  plt.suptitle("Experiment " + experimentName + ": Test set profiles at epoch " + str(epoch), fontsize=16)
+  makePredictions(current_model, path + '/Test/Data/999.txt', plt, 3,5,1, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/Data/979.txt', plt, 3,5,2, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/Data/959.txt', plt, 3,5,3, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/Data/939.txt', plt, 3,5,4, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/Data/919.txt', plt, 3,5,5, 'Sample from normal test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1000.txt', plt, 3,5,6, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1010.txt', plt, 3,5,7, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1020.txt', plt, 3,5,8, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1030.txt', plt, 3,5,9, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoDrop/1040.txt', plt, 3,5,10, 'Sample from no-drop test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1000.txt', plt, 3,5,11, 'Sample from no-harmonica test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1010.txt', plt, 3,5,12, 'Sample from no-harmonica test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1020.txt', plt, 3,5,13, 'Sample from no-harmonica test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1030.txt', plt, 3,5,14, 'Sample from no-harmonica test set')
+  makePredictions(current_model, path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
+  plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-test.png')
 
 class PlotCallback(tf.keras.callbacks.Callback):
   def on_epoch_end(self, epoch, logs={}):
@@ -130,6 +150,7 @@ print('n_samples', n_samples, 'n_epochs', n_epochs)
 
 def readData(data_path, amount):
     files = [f for f in glob.glob(path + data_path)]
+    if (amount == 'all') amount = len(files)
     random.shuffle(files)
     data = np.zeros((amount, 25000, 3))
     labels = np.zeros((amount, 31))
@@ -167,23 +188,18 @@ def readData(data_path, amount):
     return (data[:,:,:2], labels)
 
 (data, labels) = readData('/Data/*.txt', n_samples)
-print(data.shape)
-print(labels.shape, labels[0])
 (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
 (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
 training_set = np.vstack((data, dataNoDrop, dataNoHarm))
 training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
-# print('size', training_set.size, training_labels.size)
 
-# # # select columns of interest: RFU and time
-# training_set = np.transpose(training_set[:,1:3], (0, 2, 1))
+(valData, valLabels) = readData('/Validation/Data/*.txt', n_samples_val)
+(valDataNoDrop, valLabelsNoDrop) = readData('/Validation/DataNoDrop/*.txt', n_samples_val)
+(valDataNoHarm, valLabelsNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
+val_set = np.vstack((valData, valDataNoDrop, valDataNoHarm))
+val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
 
-# print('size', data.size, labels.size)
-
-(test_set, test_labels) = readData('/Test/*/*.txt', n_samples)
-
-print('size', test_set.size, test_labels.size)
-print('nan', training_set[0], test_set[0])
+(test_set, test_labels) = readData('/Test/*/*.txt', 'all')
 
 if (normalize):
   # normalize: divide RFU by 1000, time by 25000, labels by 1500
@@ -204,7 +220,7 @@ model.compile(optimizer=optimizer,
               loss='mean_squared_error')
               
 from tensorflow.keras.utils import plot_model
-plot_model(model, to_file=path + "/experiments/" + experimentName +  "/model.png")
+plot_model(model, show_shapes=True, to_file=path + "/experiments/" + experimentName +  "/model.png")
 
 callbacks = []
 if (checkpoints):
@@ -216,7 +232,7 @@ if (len(create_plots_at_epochs) > 0):
   callbacks.append(plot_callback)
   
 startFit = time.time()
-model.fit(training_set, training_labels, validation_split=0.2, shuffle=shuffle, batch_size=32, epochs=n_epochs, callbacks=callbacks)
+model.fit(training_set, training_labels, validation_data=[val_set, val_labels], shuffle=shuffle, batch_size=32, epochs=n_epochs, callbacks=callbacks)
 
 test_loss = model.evaluate(test_set, test_labels)
 with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'a') as f:
