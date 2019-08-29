@@ -150,7 +150,7 @@ print('n_samples', n_samples, 'n_epochs', n_epochs)
 
 def readData(data_path, amount):
     files = [f for f in glob.glob(path + data_path)]
-    if (amount == 'all') amount = len(files)
+    if (amount == 'all'): amount = len(files)
     random.shuffle(files)
     data = np.zeros((amount, 25000, 3))
     labels = np.zeros((amount, 31))
@@ -199,7 +199,7 @@ training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
 val_set = np.vstack((valData, valDataNoDrop, valDataNoHarm))
 val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
 
-(test_set, test_labels) = readData('/Test/*/*.txt', 'all')
+(test_set, test_labels) = readData('/Test/*/*.txt', n_samples)
 
 if (normalize):
   # normalize: divide RFU by 1000, time by 25000, labels by 1500
