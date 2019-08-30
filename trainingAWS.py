@@ -19,8 +19,8 @@ experimentName = 'Aug30'
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 800
-n_samples_val = 200
+n_samples = 80
+n_samples_val = 20
 n_epochs = 1000
 model_version = 'v1'
 shuffle = True
@@ -150,7 +150,6 @@ print('n_samples', n_samples, 'n_epochs', n_epochs)
 
 def readData(data_path, amount):
     files = [f for f in glob.glob(path + data_path)]
-    if (amount == 'all'): amount = len(files)
     random.shuffle(files)
     data = np.zeros((amount, 25000, 3))
     labels = np.zeros((amount, 31))
