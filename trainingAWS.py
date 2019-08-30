@@ -28,7 +28,7 @@ normalize = True
 generate_log = True
 checkpoints = False
 save_model = True
-create_plots_at_epochs = [1,2,3,4,5,10,25,50,100,200,300,400,500,600,700,800,900,999]
+create_plots_at_epochs = [0,1,2,3,4,5,10,25,50,100,200,300,400,500,600,700,800,900,999]
 hyperparams = [n_samples, n_samples_val, n_epochs, shuffle, normalize, model_version, create_plots_at_epochs]
 hyperparam_names = ['n_samples', 'n_samples_val', 'n_epochs', 'shuffle', 'normalize', 'model_version', 'create_plots_at_epochs']
 
@@ -130,7 +130,7 @@ def generateProfiles(current_model, epoch):
   plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-test.png')
 
 class PlotCallback(tf.keras.callbacks.Callback):
-  def on_epoch_start(self, epoch, logs={}):
+  def on_epoch_end(self, epoch, logs={}):
     if (epoch in create_plots_at_epochs): 
       generateProfiles(self.model, epoch)
 
