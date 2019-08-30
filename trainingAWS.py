@@ -158,6 +158,7 @@ def readData(data_path, amount):
         with open(f, 'r') as file:
             # stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             # print('stuff', len(stuff), stuff.size, stuff)
+            print(f)
             loadeddata =  np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             data[idx] = loadeddata
             
