@@ -17,7 +17,8 @@ from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
 model = keras.Sequential([
-    keras.layers.Dense(10000, activation='linear', input_shape=(25000, 2)),
+    keras.layers.Flatten(input_shape=(25000, 2)),
+    keras.layers.Dense(10000, activation='linear'),
     keras.layers.Dense(5000, activation='linear'),
     keras.layers.Dense(500, activation='linear'),
     keras.layers.Dense(100, activation='linear'),
