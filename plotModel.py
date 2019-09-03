@@ -25,4 +25,4 @@ model = keras.Sequential([
 ])
               
 from tensorflow.keras.utils import plot_model
-plot_model(model, show_shapes=True, to_file=path + "model.png")
+plot_model(model, show_shapes=True, to_file=path + "/model.png")
