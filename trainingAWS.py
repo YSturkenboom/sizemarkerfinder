@@ -21,14 +21,14 @@ print(device_lib.list_local_devices())
 
 n_samples = 80
 n_samples_val = 20
-n_epochs = 100
+n_epochs = 1000
 model_version = 'v1'
 shuffle = True
 normalize = True
 generate_log = True
 checkpoints = False
-save_model = True
-create_plots_at_epochs = [0,1,2,3,4,5,10,25,50,100,200,300,400,500,600,700,800,900,999]
+save_model = False
+create_plots_at_epochs = []
 hyperparams = [n_samples, n_samples_val, n_epochs, shuffle, normalize, model_version, create_plots_at_epochs]
 hyperparam_names = ['n_samples', 'n_samples_val', 'n_epochs', 'shuffle', 'normalize', 'model_version', 'create_plots_at_epochs']
 
