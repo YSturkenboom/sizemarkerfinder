@@ -27,7 +27,7 @@ shuffle = True
 normalize = True
 generate_log = True
 checkpoints = False
-save_model = True
+save_model = False
 create_plots_at_epochs = [0,1,2,3,4,5,10,25,50,100,200,300,400,500,600,700,800,900,999]
 hyperparams = [n_samples, n_samples_val, n_epochs, shuffle, normalize, model_version, create_plots_at_epochs]
 hyperparam_names = ['n_samples', 'n_samples_val', 'n_epochs', 'shuffle', 'normalize', 'model_version', 'create_plots_at_epochs']
@@ -213,6 +213,7 @@ if (normalize):
 model = keras.Sequential([
     keras.layers.Flatten(input_shape=(25000, 2)),
     keras.layers.Dense(5000, activation='linear'),
+    keras.layers.Dense(1000, activation='linear'),
     keras.layers.Dense(500, activation='linear'),
     keras.layers.Dense(31, activation='linear'),
 ])
