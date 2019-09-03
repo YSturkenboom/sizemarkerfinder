@@ -212,10 +212,8 @@ if (normalize):
 
 model = keras.Sequential([
     keras.layers.Flatten(input_shape=(25000, 2)),
-    keras.layers.Dense(10000, activation='linear'),
     keras.layers.Dense(5000, activation='linear'),
     keras.layers.Dense(500, activation='linear'),
-    keras.layers.Dense(100, activation='linear'),
     keras.layers.Dense(31, activation='linear'),
 ])
 optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.01, decay=0.0, amsgrad=False)
