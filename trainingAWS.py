@@ -14,14 +14,14 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Sep3-H2-Nodrop-FixedVal'
+experimentName = 'Sep3-H4-Complex'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 800
-n_samples_val = 200
-n_epochs = 1000
+n_samples = 80
+n_samples_val = 20
+n_epochs = 100
 model_version = 'v1'
 shuffle = True
 normalize = True
@@ -188,21 +188,17 @@ def readData(data_path, amount):
 
     return (data[:,:,:2], labels)
 
-(data, labels) = readData('/DataNoDrop/*.txt', n_samples * 3)
-# (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
-# (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
-# training_set = np.vstack((data, dataNoDrop, dataNoHarm))
-# training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
-training_set = data
-training_labels = labels
+(data, labels) = readData('/Data/*.txt', n_samples)
+(dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
+(dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
+training_set = np.vstack((data, dataNoDrop, dataNoHarm))
+training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
 
-(valData, valLabels) = readData('/Validation/DataNoDrop/*.txt', n_samples_val * 3)
-# (valDataNoDrop, valLabelsNoDrop) = readData('/Validation/DataNoDrop/*.txt', n_samples_val)
-# (valDataNoHarm, valLabelsNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
-# val_set = np.vstack((valData, valDataNoDrop, valDataNoHarm))
-# val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
-val_set = valData
-val_labels = valLabels
+(valData, valLabels) = readData('/Validation/Data/*.txt', n_samples_val)
+(valDataNoDrop, valLabelsNoDrop) = readData('/Validation/DataNoDrop/*.txt', n_samples_val)
+(valDataNoHarm, valLabelsNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
+val_set = np.vstack((valData, valDataNoDrop, valDataNoHarm))
+val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
 
 (test_set, test_labels) = readData('/Test/*/*.txt', n_samples)
 
@@ -215,10 +211,12 @@ if (normalize):
 # test_set = np.transpose(test_set[:,1:3], (0, 2, 1))
 
 model = keras.Sequential([
-    keras.layers.Conv1D(31, 250, activation='linear', input_shape=(25000, 2)),
-    keras.layers.Flatten(),
-#     keras.layers.Dense(100, activation='linear'),
-    keras.layers.Dense(31, activation='linear')
+    keras.layers.Flatten(input_shape=(25000, 2)),
+    keras.layers.Dense(10000, activation='linear'),
+    keras.layers.Dense(5000, activation='linear'),
+    keras.layers.Dense(500, activation='linear'),
+    keras.layers.Dense(100, activation='linear'),
+    keras.layers.Dense(31, activation='linear'),
 ])
 optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.01, decay=0.0, amsgrad=False)
 # optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
