@@ -14,14 +14,14 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Sep3-H2-Nodrop'
+experimentName = 'Sep3-H2-Nodrop-FixedVal'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 800
-n_samples_val = 200
-n_epochs = 1000
+n_samples = 80
+n_samples_val = 20
+n_epochs = 100
 model_version = 'v1'
 shuffle = True
 normalize = True
@@ -210,6 +210,7 @@ if (normalize):
   # normalize: divide RFU by 1000, time by 25000, labels by 1500
   training_set = np.divide(training_set, 25000)
   test_set = np.divide(test_set, 25000)
+  val_set = np.divide(val_set, 25000)
 # select columns of interest: RFU and time
 # test_set = np.transpose(test_set[:,1:3], (0, 2, 1))
 
