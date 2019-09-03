@@ -212,7 +212,7 @@ if (normalize):
 
 model = keras.Sequential([
     keras.layers.Flatten(input_shape=(25000, 2)),
-    keras.layers.Dense(10000, activation='linear'),
+    keras.layers.Dense(5000, activation='linear'),
     keras.layers.Dense(1000, activation='linear'),
     keras.layers.Dense(500, activation='linear'),
     keras.layers.Dense(100, activation='linear'),
