@@ -14,7 +14,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Aug30'
+experimentName = 'Sep3-H2-Nodrop'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
@@ -90,6 +90,7 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/DataNoHarm/1600.txt', plt, 3, 5, 14, 'Sample from no-harmonica training set')
   makePredictions(current_model, path + '/DataNoHarm/1800.txt', plt, 3, 5, 15, 'Sample from no-harmonica training set')
   plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-train.png')
+  plt.close()
 
   plt.figure(figsize=(30,15))
   plt.suptitle("Experiment " + experimentName + ": Validation set profiles at epoch " + str(epoch), fontsize=16)
@@ -187,17 +188,21 @@ def readData(data_path, amount):
 
     return (data[:,:,:2], labels)
 
-(data, labels) = readData('/Data/*.txt', n_samples)
-(dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
-(dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
-training_set = np.vstack((data, dataNoDrop, dataNoHarm))
-training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
+(data, labels) = readData('/DataNoDrop/*.txt', n_samples * 3)
+# (dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
+# (dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
+# training_set = np.vstack((data, dataNoDrop, dataNoHarm))
+# training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
+training_set = data
+training_labels = labels
 
-(valData, valLabels) = readData('/Validation/Data/*.txt', n_samples_val)
-(valDataNoDrop, valLabelsNoDrop) = readData('/Validation/DataNoDrop/*.txt', n_samples_val)
-(valDataNoHarm, valLabelsNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
-val_set = np.vstack((valData, valDataNoDrop, valDataNoHarm))
-val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
+(valData, valLabels) = readData('/Validation/DataNoDrop/*.txt', n_samples_val * 3)
+# (valDataNoDrop, valLabelsNoDrop) = readData('/Validation/DataNoDrop/*.txt', n_samples_val)
+# (valDataNoHarm, valLabelsNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
+# val_set = np.vstack((valData, valDataNoDrop, valDataNoHarm))
+# val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
+val_set = valData
+val_labels = valLabels
 
 (test_set, test_labels) = readData('/Test/*/*.txt', n_samples)
 
@@ -232,7 +237,7 @@ if (len(create_plots_at_epochs) > 0):
   callbacks.append(plot_callback)
   
 startFit = time.time()
-model.fit(training_set, training_labels, validation_data=[val_set, val_labels], shuffle=shuffle, batch_size=32, epochs=n_epochs, callbacks=callbacks)
+model.fit(training_set, training_labels, validation_data=(val_set, val_labels), shuffle=shuffle, batch_size=32, epochs=n_epochs, callbacks=callbacks)
 
 test_loss = model.evaluate(test_set, test_labels)
 with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'a') as f:
