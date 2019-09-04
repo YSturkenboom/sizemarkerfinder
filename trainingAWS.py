@@ -14,14 +14,14 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Sep3-H4-Complex'
+experimentName = 'Sep3-H4-Complex-SGD'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 800
-n_samples_val = 200
-n_epochs = 1000
+n_samples = 80
+n_samples_val = 20
+n_epochs = 100
 model_version = 'v1'
 shuffle = True
 normalize = True
@@ -110,6 +110,7 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/Validation/DataNoHarm/9530.txt', plt, 3,5,14, 'Sample from no-harmonica validation set')
   makePredictions(current_model, path + '/Validation/DataNoHarm/9540.txt', plt, 3,5,15, 'Sample from no-harmonica validation set')
   plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-val.png')
+  plt.close()
 
   plt.figure(figsize=(30,15))
   plt.suptitle("Experiment " + experimentName + ": Test set profiles at epoch " + str(epoch), fontsize=16)
@@ -129,6 +130,7 @@ def generateProfiles(current_model, epoch):
   makePredictions(current_model, path + '/Test/DataNoHarm/1030.txt', plt, 3,5,14, 'Sample from no-harmonica test set')
   makePredictions(current_model, path + '/Test/DataNoHarm/1040.txt', plt, 3,5,15, 'Sample from no-harmonica test set')
   plt.savefig(path+'/experiments/'+experimentName+'/plot-ep'+str(epoch)+'-test.png')
+  plt.close()
 
 class PlotCallback(tf.keras.callbacks.Callback):
   def on_epoch_end(self, epoch, logs={}):
@@ -218,8 +220,9 @@ model = keras.Sequential([
     keras.layers.Dense(100, activation='linear'),
     keras.layers.Dense(31, activation='linear'),
 ])
-optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.01, decay=0.0, amsgrad=False)
-# optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
+# optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.01, decay=0.0, amsgrad=False)
+optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.9)
+
 model.compile(optimizer=optimizer,
               loss='mean_squared_error')
               
