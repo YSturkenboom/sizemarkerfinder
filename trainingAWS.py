@@ -19,8 +19,8 @@ experimentName = 'Sep3-H4-Complex-ADAM-YNormalized-Small'
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 800
-n_samples_val = 200
+n_samples = 80
+n_samples_val = 20
 n_epochs = 1000
 model_version = 'v1'
 shuffle = True
@@ -203,7 +203,7 @@ training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
 val_set = np.vstack((valData, valDataNoDrop, valDataNoHarm))
 val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
 
-(test_set, test_labels) = readData('/Test/*/*.txt', n_samples)
+(test_set, test_labels) = readData('/Test/*/*.txt', n_samples_val)
 
 if (normalize):
   # normalize: divide RFU by 1000, time by 25000, labels by 1500
