@@ -200,7 +200,7 @@ training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
 
 (valData, valLabels, filesVal) = readData('/Validation/Data/*.txt', n_samples_val)
 (valDataNoDrop, valLabelsNoDrop, filesValNoDrop) = readData('/Validation/DataNoDrop/*.txt', n_samples_val)
-(valDataNoHarm, valLabelsNoHarm, filesN=ValNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
+(valDataNoHarm, valLabelsNoHarm, filesValNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
 val_set = np.vstack((valData, valDataNoDrop, valDataNoHarm))
 val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
 
