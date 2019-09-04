@@ -221,7 +221,7 @@ model = keras.Sequential([
     keras.layers.Dense(31, activation='linear'),
 ])
 # optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.01, decay=0.0, amsgrad=False)
-optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.9)
+optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.9, clipnorm=1.0)
 
 model.compile(optimizer=optimizer,
               loss='mean_squared_error')
