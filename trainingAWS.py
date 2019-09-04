@@ -14,7 +14,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Sep3-H4-Complex-ADAM-YNormalized'
+experimentName = 'Sep3-H4-Complex-ADAM-YNormalized-Small'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
@@ -37,7 +37,7 @@ def generateProfile(data, predictions, plt, n1, n2, n3, title):
   profile = data[0]
   pred_array = np.zeros(25000)
   for pred in predictions[0]:
-    pred = pred * 25000.0
+    # pred = pred * 25000.0
     if (pred < 25000 and pred >= 0):
       pred_array[int(round(pred))] = 0.1
       
@@ -255,5 +255,5 @@ print('Test loss', test_loss)
 print('Test loss', test_loss)
 
 if (save_model):
-  model.save(path + '/experiments/' + experimentName +  "/model.h5")
+  model.save(path + "/latest_model.h5")
   # model.save_weights(path + '/experiments/' + experimentName + '/weights.h5')
