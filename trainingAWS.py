@@ -19,9 +19,9 @@ experimentName = 'Sep3-H4-Complex'
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
 
-n_samples = 80
-n_samples_val = 20
-n_epochs = 100
+n_samples = 800
+n_samples_val = 200
+n_epochs = 1000
 model_version = 'v1'
 shuffle = True
 normalize = True
