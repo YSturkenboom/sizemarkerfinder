@@ -14,7 +14,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Sep3-H4-Complex-SGD'
+experimentName = 'Sep3-H4-Complex-SGD-YNormalized'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
@@ -37,6 +37,7 @@ def generateProfile(data, predictions, plt, n1, n2, n3, title):
   profile = data[0]
   pred_array = np.zeros(25000)
   for pred in predictions[0]:
+    pred = pred * 25000
     if (pred < 25000 and pred >= 0):
       pred_array[int(round(pred))] = 0.1
       
@@ -161,7 +162,7 @@ def readData(data_path, amount):
         with open(f, 'r') as file:
             # stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             # print('stuff', len(stuff), stuff.size, stuff)
-            print(f)
+            # print(f)
             loadeddata =  np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             data[idx] = loadeddata
             
@@ -207,8 +208,11 @@ val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
 if (normalize):
   # normalize: divide RFU by 1000, time by 25000, labels by 1500
   training_set = np.divide(training_set, 25000)
+  training_labels = np.divide(training_labels, 25000)
   test_set = np.divide(test_set, 25000)
+  test_labels = np.divide(test_labels, 25000)
   val_set = np.divide(val_set, 25000)
+  val_labels = np.divide(val_labels, 25000)
 # select columns of interest: RFU and time
 # test_set = np.transpose(test_set[:,1:3], (0, 2, 1))
 
