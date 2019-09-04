@@ -196,7 +196,7 @@ def readData(data_path, amount):
     #   labels[idx] = sizemarker_pos
     #   # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
 
-    return (data[:,:,:2], labels, files[:amount])
+    return (data[:,:,:2], labels, fileList[:amount])
 
 (data, labels, files) = readData('/Data/*.txt', n_samples)
 print(files)
