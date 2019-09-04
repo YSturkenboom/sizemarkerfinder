@@ -160,12 +160,12 @@ with open(path + '/experiments/' + experimentName + '/hyperparams.txt', 'w') as 
 print('n_samples', n_samples, 'n_epochs', n_epochs)
 
 def readData(data_path, amount):
-    files = [f for f in glob.glob(path + data_path)]
-    random.shuffle(files)
+    fileList = [f for f in glob.glob(path + data_path)]
+    # random.shuffle(files)
     data = np.zeros((amount, 25000, 3))
     labels = np.zeros((amount, 31))
     # print(data_path)
-    for idx, f in tqdm(enumerate(files[:amount])):
+    for idx, f in tqdm(enumerate(fileList[:amount])):
         with open(f, 'r') as file:
             # stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             # print('stuff', len(stuff), stuff.size, stuff)
