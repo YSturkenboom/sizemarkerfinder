@@ -162,7 +162,7 @@ def readData(data_path, amount):
         with open(f, 'r') as file:
             # stuff = np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             # print('stuff', len(stuff), stuff.size, stuff)
-            # print(f)
+            print(f)
             loadeddata =  np.loadtxt(file, delimiter=",", skiprows=1, usecols=(1,2,4))
             data[idx] = loadeddata
             
@@ -189,21 +189,22 @@ def readData(data_path, amount):
     #   labels[idx] = sizemarker_pos
     #   # print("Sizemarker positions", sizemarker_pos, "Sizemarkers in experiment", len(sizemarker_pos))
 
-    return (data[:,:,:2], labels)
+    return (data[:,:,:2], labels, files[:amount])
 
-(data, labels) = readData('/Data/*.txt', n_samples)
-(dataNoDrop, labelsNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
-(dataNoHarm, labelsNoharm) = readData('/DataNoHarm/*.txt', n_samples)
+(data, labels, files) = readData('/Data/*.txt', n_samples)
+print(files)
+(dataNoDrop, labelsNoDrop, filesNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
+(dataNoHarm, labelsNoharm, filesNoHarm) = readData('/DataNoHarm/*.txt', n_samples)
 training_set = np.vstack((data, dataNoDrop, dataNoHarm))
 training_labels = np.vstack((labels, labelsNoDrop, labelsNoharm))
 
-(valData, valLabels) = readData('/Validation/Data/*.txt', n_samples_val)
-(valDataNoDrop, valLabelsNoDrop) = readData('/Validation/DataNoDrop/*.txt', n_samples_val)
-(valDataNoHarm, valLabelsNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
+(valData, valLabels, filesVal) = readData('/Validation/Data/*.txt', n_samples_val)
+(valDataNoDrop, valLabelsNoDrop, filesValNoDrop) = readData('/Validation/DataNoDrop/*.txt', n_samples_val)
+(valDataNoHarm, valLabelsNoHarm, filesN=ValNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
 val_set = np.vstack((valData, valDataNoDrop, valDataNoHarm))
 val_labels = np.vstack((valLabels, valLabelsNoDrop, valLabelsNoHarm))
 
-(test_set, test_labels) = readData('/Test/*/*.txt', n_samples_val)
+(test_set, test_labels, filesTest) = readData('/Test/*/*.txt', n_samples_val)
 
 if (normalize):
   # normalize: divide RFU by 1000, time by 25000, labels by 1500
