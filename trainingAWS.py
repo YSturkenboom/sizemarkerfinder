@@ -37,7 +37,7 @@ def generateProfile(data, predictions, plt, n1, n2, n3, title):
   profile = data[0]
   pred_array = np.zeros(25000)
   for pred in predictions[0]:
-    # pred = pred * 25000.0
+    pred = pred * 25000.0
     if (pred < 25000 and pred >= 0):
       pred_array[int(round(pred))] = 0.1
       
@@ -68,7 +68,7 @@ def makePredictions(current_model, prediction_data_path, plt, n1, n2, n3, title)
     # print(pred_data.shape, pred_data)
     
     predictions = current_model.predict(pred_data)
-    # print(predictions)
+    print(predictions)
 
     generateProfile(pred_data, predictions, plt, n1, n2, n3, title)
 
