@@ -14,7 +14,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Sep3-H4-Complex-ADAM-YNormalized-Small'
+experimentName = 'Sep3-H4-Complex-SGD-YNormalized-Small'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
