@@ -14,7 +14,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Sep3-H4-Complex-SGD-YNormalized'
+experimentName = 'Sep3-H4-Complex-ADAM-YNormalized'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
@@ -224,8 +224,8 @@ model = keras.Sequential([
     keras.layers.Dense(100, activation='linear'),
     keras.layers.Dense(31, activation='linear'),
 ])
-# optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.01, decay=0.0, amsgrad=False)
-optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.9, clipnorm=1.0)
+optimizer = keras.optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=0.01, decay=0.0, amsgrad=False)
+# optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.9, clipnorm=1.0)
 
 model.compile(optimizer=optimizer,
               loss='mean_squared_error')
