@@ -21,7 +21,7 @@ print(device_lib.list_local_devices())
 
 n_samples = 8
 n_samples_val = 2
-n_epochs = 500
+n_epochs = 100
 model_version = 'v1'
 shuffle = True
 normalize = True
@@ -34,7 +34,7 @@ hyperparam_names = ['n_samples', 'n_samples_val', 'n_epochs', 'shuffle', 'normal
 
 files = []
 filesNoDrop = []
-filesNoHarm
+filesNoHarm = []
 filesVal = []
 filesValNoDrop = []
 filesValNoHarm = []
