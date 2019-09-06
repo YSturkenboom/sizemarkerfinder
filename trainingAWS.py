@@ -200,7 +200,7 @@ def readData(data_path, amount):
 
 # (data, labels, files) = readData('/Data/*.txt', n_samples)
 # (dataNoDrop, labelsNoDrop, filesNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
-(dataNoHarm, labelsNoharm, filesNoHarm) = readData('/DataNoHarm/*.txt', n_samples*3)
+(dataNoHarm, labelsNoHarm, filesNoHarm) = readData('/DataNoHarm/*.txt', n_samples*3)
 training_set = dataNoHarm
 training_labels = labelsNoHarm
 
