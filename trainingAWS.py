@@ -14,7 +14,7 @@ from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, LambdaCallbac
 path = os.getcwd()
 
 # VARIABLES AND HYPERPARAMETERS
-experimentName = 'Sep6-H3-NoHarmonica-ADAM-YNormalized'
+experimentName = 'Sep25-H3-NoHarmonica-ADAM-YNormalized'
 
 from tensorflow.python.client import device_lib
 print(device_lib.list_local_devices())
@@ -200,13 +200,13 @@ def readData(data_path, amount):
 
 # (data, labels, files) = readData('/Data/*.txt', n_samples)
 # (dataNoDrop, labelsNoDrop, filesNoDrop) = readData('/DataNoDrop/*.txt', n_samples)
-(dataNoHarm, labelsNoHarm, filesNoHarm) = readData('/DataNoHarm/*.txt', n_samples*3)
+(dataNoHarm, labelsNoHarm, filesNoHarm) = readData('/DataNoHarm2/*.txt', n_samples*3)
 training_set = dataNoHarm
 training_labels = labelsNoHarm
 
 # (valData, valLabels, filesVal) = readData('/Validation/Data/*.txt', n_samples_val)
 # (valDataNoDrop, valLabelsNoDrop, filesValNoDrop) = readData('/Validation/DataNoDrop/*.txt', n_samples_val)
-(valDataNoHarm, valLabelsNoHarm, filesValNoHarm) = readData('/Validation/DataNoHarm/*.txt', n_samples_val)
+(valDataNoHarm, valLabelsNoHarm, filesValNoHarm) = readData('/Validation/DataNoHarm2/*.txt', n_samples_val)
 val_set = valDataNoHarm
 val_labels = valLabelsNoHarm
 
